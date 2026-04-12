@@ -6,8 +6,7 @@
  * La primera impresión es lo que cuenta. Esta sección da la introduccion al portfaolio
  * ═══════════════════════════════════════════════════════════════════════════
  */
-import { Image } from "astro:assets";
-import logo from "../../assets/Img/Introduccion/img_introduccion.jpg";
+const logo = "/assets/Img/Introduccion/img_introduccion.jpg";
 ---
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
@@ -19,7 +18,7 @@ import logo from "../../assets/Img/Introduccion/img_introduccion.jpg";
   <!-- FIGURE: Imagen de fondo con overlays y efectos de luz                       -->
   <!-- ────────────────────────────────────────────────────────────────────────── -->
   <figure class="absolute inset-0 w-full h-full">
-    <Image
+    <img
       src={logo}
       alt="Alejandro Aguilon - Fotografía profesional"
       class="w-full h-full object-cover brightness-90 contrast-100"
@@ -215,7 +214,7 @@ import logo from "../../assets/Img/Introduccion/img_introduccion.jpg";
     <figure class="relative h-screen overflow-hidden">
       
       <span class="absolute inset-0">
-        <Image
+        <img
           src={logo}
           alt="Alejandro Aguilon - Fotografía de perfil"
           class="w-full h-full object-cover brightness-90"

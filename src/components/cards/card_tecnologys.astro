@@ -4,61 +4,40 @@
  * CARD TECNOLOGÍAS - CARRUSEL DE ICONOS
  * ═══════════════════════════════════════════════════════════════════════════
  * Propósito: Mostrar todas las tecnologías que domina el developer en un
+ *            carrusel horizontal que se anima infinitamente vía JavaScript.
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-import { Image } from "astro:assets";
-
-// Importación de todos los iconos de tecnologías
-import iconANACONDA from "../../assets/Icon/iconANACONDA.png";
-import iconASTRO from "../../assets/Icon/iconASTRO.png";
-import iconBOOTSTRAP from "../../assets/Icon/iconBOOTSTRAP.png";
-import iconCANVA from "../../assets/Icon/iconCANVA.png";
-import iconCSS from "../../assets/Icon/iconCSS.png";
-import iconFIGMA from "../../assets/Icon/iconFIGMA.png";
-import iconFLUTTER from "../../assets/Icon/iconFLUTTER.png";
-import iconHTML from "../../assets/Icon/iconHTML.png";
-import iconJS from "../../assets/Icon/iconJS.png";
-import iconLARAVEL from "../../assets/Icon/iconLARAVEL.png";
-import iconMARIADB from "../../assets/Icon/iconMARIADB.png";
-import iconMYSQL from "../../assets/Icon/iconMYSQL.png";
-import iconPHP from "../../assets/Icon/iconPHP.png";
-import iconPOWERBI from "../../assets/Icon/iconPOWERBI.png";
-import iconPYTHON from "../../assets/Icon/iconPYTHON.png";
-import iconSASS from "../../assets/Icon/iconSASS.png";
-import iconSPYDER from "../../assets/Icon/iconSPYDER.png";
-import iconTAILWIND from "../../assets/Icon/iconTAILWIND.png";
-import iconVUE from "../../assets/Icon/iconVUE.png";
-import iconWORDPRESS from "../../assets/Icon/iconWORDPRESS.png";
+// Ya no se necesita import { Image } from "astro:assets"
 
 /**
  * Array de tecnologías para facilitar el mantenimiento.
  * Cada objeto contiene:
  * - name: Nombre de la tecnología (para alt y title)
- * - icon: Ruta del icono importado
+ * - icon: Ruta pública del icono (desde /assets/Icon/)
  * - url: Link a la documentación oficial
  */
 const technologies = [
-  { name: "Anaconda", icon: iconANACONDA, url: "https://www.anaconda.com/" },
-  { name: "Astro", icon: iconASTRO, url: "https://astro.build/" },
-  { name: "Bootstrap", icon: iconBOOTSTRAP, url: "https://getbootstrap.com/" },
-  { name: "Canva", icon: iconCANVA, url: "https://www.canva.com/" },
-  { name: "CSS", icon: iconCSS, url: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
-  { name: "Figma", icon: iconFIGMA, url: "https://www.figma.com/" },
-  { name: "Flutter", icon: iconFLUTTER, url: "https://flutter.dev/" },
-  { name: "HTML", icon: iconHTML, url: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
-  { name: "JavaScript", icon: iconJS, url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-  { name: "Laravel", icon: iconLARAVEL, url: "https://laravel.com/docs" },
-  { name: "MariaDB", icon: iconMARIADB, url: "https://mariadb.org/documentation/" },
-  { name: "MySQL", icon: iconMYSQL, url: "https://dev.mysql.com/doc/" },
-  { name: "PHP", icon: iconPHP, url: "https://www.php.net/docs.php" },
-  { name: "Power BI", icon: iconPOWERBI, url: "https://learn.microsoft.com/power-bi/" },
-  { name: "Python", icon: iconPYTHON, url: "https://docs.python.org/3/" },
-  { name: "SASS", icon: iconSASS, url: "https://sass-lang.com/documentation/" },
-  { name: "Spyder", icon: iconSPYDER, url: "https://docs.spyder-ide.org/" },
-  { name: "Tailwind", icon: iconTAILWIND, url: "https://tailwindcss.com/docs" },
-  { name: "Vue", icon: iconVUE, url: "https://vuejs.org/guide/introduction.html" },
-  { name: "WordPress", icon: iconWORDPRESS, url: "https://wordpress.org/documentation/" },
+  { name: "Anaconda", icon: "/assets/Icon/iconANACONDA.png", url: "https://www.anaconda.com/" },
+  { name: "Astro", icon: "/assets/Icon/iconASTRO.png", url: "https://astro.build/" },
+  { name: "Bootstrap", icon: "/assets/Icon/iconBOOTSTRAP.png", url: "https://getbootstrap.com/" },
+  { name: "Canva", icon: "/assets/Icon/iconCANVA.png", url: "https://www.canva.com/" },
+  { name: "CSS", icon: "/assets/Icon/iconCSS.png", url: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+  { name: "Figma", icon: "/assets/Icon/iconFIGMA.png", url: "https://www.figma.com/" },
+  { name: "Flutter", icon: "/assets/Icon/iconFLUTTER.png", url: "https://flutter.dev/" },
+  { name: "HTML", icon: "/assets/Icon/iconHTML.png", url: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+  { name: "JavaScript", icon: "/assets/Icon/iconJS.png", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+  { name: "Laravel", icon: "/assets/Icon/iconLARAVEL.png", url: "https://laravel.com/docs" },
+  { name: "MariaDB", icon: "/assets/Icon/iconMARIADB.png", url: "https://mariadb.org/documentation/" },
+  { name: "MySQL", icon: "/assets/Icon/iconMYSQL.png", url: "https://dev.mysql.com/doc/" },
+  { name: "PHP", icon: "/assets/Icon/iconPHP.png", url: "https://www.php.net/docs.php" },
+  { name: "Power BI", icon: "/assets/Icon/iconPOWERBI.png", url: "https://learn.microsoft.com/power-bi/" },
+  { name: "Python", icon: "/assets/Icon/iconPYTHON.png", url: "https://docs.python.org/3/" },
+  { name: "SASS", icon: "/assets/Icon/iconSASS.png", url: "https://sass-lang.com/documentation/" },
+  { name: "Spyder", icon: "/assets/Icon/iconSPYDER.png", url: "https://docs.spyder-ide.org/" },
+  { name: "Tailwind", icon: "/assets/Icon/iconTAILWIND.png", url: "https://tailwindcss.com/docs" },
+  { name: "Vue", icon: "/assets/Icon/iconVUE.png", url: "https://vuejs.org/guide/introduction.html" },
+  { name: "WordPress", icon: "/assets/Icon/iconWORDPRESS.png", url: "https://wordpress.org/documentation/" },
 ];
 ---
 
@@ -81,7 +60,7 @@ const technologies = [
         class="shrink-0 transition-transform hover:scale-110"
         title={`Visitar documentación de ${tech.name}`}
       >
-        <Image 
+        <img 
           src={tech.icon} 
           alt={`Logo de ${tech.name}`} 
           class="w-14 h-14 xl:w-15 xl:h-15 object-contain" 

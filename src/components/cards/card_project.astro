@@ -4,20 +4,20 @@
  * CARD PROJECTS - GRID DE PROYECTOS
  * ============================================================================
  * Proposito: Mostrar el portafolio de proyectos en un grid responsive con
- * filtros por categoria.
+ *            filtros por categoria.
  * ============================================================================
  */
 
-// Importacion de imagenes de proyectos
-import cafeBadosImg from "../../assets/Img/Project/Café Bados.png";
-import myLookImg from "../../assets/Img/Project/MyLook.png";
-import grupoConectaImg from "../../assets/Img/Project/Landing Conecta.png";
-import waxItImg from "../../assets/Img/Project/Wax It.png";
-import marbleCompleteImg from "../../assets/Img/Project/Marble Complete.png";
-import marbleComplete2Img from "../../assets/Img/Project/Marble Complete 2.0.png";
-import portfolioImg from "../../assets/Img/Project/Portfolio.png";
-import etlSultanaImg from "../../assets/Img/Project/ETL - Sultana Del Valle.png";
-import darkshopImg from "../../assets/Img/Project/Darkshop.png";
+// Importacion de imagenes de proyectos (Rutas publicas)
+const cafeBadosImg = "/assets/Img/Project/Café Bados.png";
+const myLookImg = "/assets/Img/Project/MyLook.png";
+const grupoConectaImg = "/assets/Img/Project/Landing Conecta.png";
+const waxItImg = "/assets/Img/Project/Wax It.png";
+const marbleCompleteImg = "/assets/Img/Project/Marble Complete.png";
+const marbleComplete2Img = "/assets/Img/Project/Marble Complete 2.0.png";
+const portfolioImg = "/assets/Img/Project/Portfolio.png";
+const etlSultanaImg = "/assets/Img/Project/ETL - Sultana Del Valle.png";
+const darkshopImg = "/assets/Img/Project/Darkshop.png";
 
 /**
  * DATOS DE PROYECTOS
@@ -27,7 +27,7 @@ import darkshopImg from "../../assets/Img/Project/Darkshop.png";
  * - title: Nombre del proyecto
  * - description: Descripcion corta
  * - category: Categoria para filtros ('professional', 'landing', 'learning')
- * - image: Ruta de la imagen de preview (IMPORTADA)
+ * - image: Ruta publica de la imagen de preview
  * - link: URL del proyecto
  * - technologies: Array de tecnologias usadas
  */
@@ -108,7 +108,7 @@ const projectsData = [
     title: "DarkShop Ecommerce",
     description: "Ecommerce of clothes black and dark style with a lot of products and more",
     category: "professional",
-    image: darkshopImg, 
+    image: darkshopImg,
     link: "/projects/task-manager",
     technologies: ["Laravel", "Css", "Figma", "JavaScript", "MySQL", "Hostinguer"]
   },
@@ -143,7 +143,7 @@ const projectsData = [
       {/* FIGURE: Imagen del proyecto con overlay en hover */}
       <figure class="relative overflow-hidden h-48 sm:h-52 lg:h-56 2xl:h-64">
         <img
-            src={typeof project.image === "string" ? project.image : project.image.src}
+            src={project.image}
             alt={`Vista previa del proyecto ${project.title}`}
             class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
             loading="lazy"

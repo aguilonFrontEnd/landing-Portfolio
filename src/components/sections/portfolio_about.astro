@@ -6,8 +6,7 @@
  * Propósito: Presentar el perfil del desarrollador, su filosofía y permitir descargar el CV.
  * ═══════════════════════════════════════════════════════════════════════════
  */
-import { Image } from "astro:assets";
-import logo from "../../assets/Img/Quien soy/img_aboutme.jpg";
+const logo = "/assets/Img/Quien soy/img_aboutme.jpg";
 ---
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
@@ -39,7 +38,7 @@ import logo from "../../assets/Img/Quien soy/img_aboutme.jpg";
         <span class="hidden xl:block absolute -top-10 2xl:-top-10 2xl:-left-10 w-full max-w-lg h-full bg-black-primary" aria-hidden="true"></span>
         
         <!-- Imagen de Alejandro -->
-        <Image
+       <img
           src={logo}
           alt="Alejandro Aguilon - Software Developer"
           class="relative w-full max-w-xs xl:ml-15 2xl:ml-5 2xl:mt-12 sm:max-w-sm lg:max-w-md xl:max-w-lg aspect-4/4 object-cover shadow-xl"

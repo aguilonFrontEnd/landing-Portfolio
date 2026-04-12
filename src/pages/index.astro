@@ -2,7 +2,7 @@
 import "../styles/global.css";
 
 /* ICONO DE WEBSITE */
-import logo from "../assets/Img/Navegacion/Img_perfil.jpg";
+const logo = "../../assets/profile.jpg";
 
 import Navigation from "../layouts/portfolio_navigation.astro"
 import Footer from "../layouts/portfolio_footer.astro"
@@ -30,10 +30,9 @@ import Contact from "../components/form/portfolio_contact.astro"
     <!-- FAVICON – ICONO DEL SITIO                         -->
     <!-- ================================================= -->
     <link
-    rel="icon"
-    type="image/png"
-    type="image/svg+xml"
-    href={logo.src} 
+        rel="icon"
+        type="image/png"
+        href={logo}
     />
 
     <!-- ================================================= -->
