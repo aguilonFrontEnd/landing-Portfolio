@@ -1,0 +1,90 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * SECCIÓN PROYECTOS - ALEJANDRO AGUILON
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar el portafolio de proyectos con filtros por categoría.
+ * Funcionalidad: Filtros interactivos controlados por data-filter.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+import CardProject from "../cards/card_project.astro"
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN PROYECTOS - Seccion donde se muestran los proyectos                   -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="projects" data-target="projects" 
+  class="relative w-full z-10 bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 2xl:px-12 font-inter"
+  aria-labelledby="projects-title"
+>
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- HEADER: Título de la sección con línea decorativa                           -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <header
+    class="relative max-w-7xl 2xl:max-w-[95%] 3xl:max-w-[90%] mx-auto mb-10 sm:mb-5"
+  >
+  
+    <!-- Contenedor del título -->
+    <div class="relative">
+
+      <!-- Título principal -->
+      <h2
+        id="projects-title"
+        class="relative text-4xl sm:text-5xl lg:text-3xl 2xl:text-5xl font-bold text-yellow-primary"
+      >
+        PROJECTS
+      </h2>
+
+    </div>
+
+    <!-- Línea decorativa inferior (ancho completo) -->
+    <span class="block mt-3 h-1.5 w-full bg-black-primary" aria-hidden="true"></span>
+
+  </header>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- NAV: Filtros de proyectos por categoría                                     -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <nav
+    class="max-w-7xl 2xl:max-w-[95%] 3xl:max-w-[90%] mx-auto mb-10 lg:mb-14 flex flex-wrap gap-2 sm:gap-3"
+    aria-label="Filtros de proyectos"
+  >
+    <!-- Filtro: Todos (activo por defecto) -->
+    <button
+      class="filter-btn active px-4 sm:px-5 2xl:px-6 py-2 2xl:py-2.5 rounded-full text-sm 2xl:text-base font-medium bg-yellow-primary text-white-primary shadow-md hover:shadow-lg transition-all"
+      data-filter="all"
+      aria-current="page"
+    >
+      All
+    </button>
+
+    <!-- Filtro: Learning -->
+    <button
+      class="filter-btn px-4 sm:px-5 2xl:px-6 py-2 2xl:py-2.5 rounded-full text-sm 2xl:text-base font-medium border border-gray-primary text-black-tertiary hover:border-yellow-primary hover:text-yellow-primary hover:shadow-md transition-all"
+      data-filter="learning"
+    >
+      Learning
+    </button>
+
+    <!-- Filtro: Landing Pages -->
+    <button
+      class="filter-btn px-4 sm:px-5 2xl:px-6 py-2 2xl:py-2.5 rounded-full text-sm 2xl:text-base font-medium border border-gray-primary text-black-tertiary hover:border-yellow-primary hover:text-yellow-primary hover:shadow-md transition-all"
+      data-filter="landing"
+    >
+      Landing Pages
+    </button>
+
+    <!-- Filtro: Professional Project -->
+    <button
+      class="filter-btn px-4 sm:px-5 2xl:px-6 py-2 2xl:py-2.5 rounded-full text-sm 2xl:text-base font-medium border border-gray-primary text-black-tertiary hover:border-yellow-primary hover:text-yellow-primary hover:shadow-md transition-all"
+      data-filter="professional"
+    >
+      Professional Project
+    </button>
+  </nav>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- CARD PROJECT: Componente externo con el grid de tarjetas de proyectos       -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <CardProject />
+</section>

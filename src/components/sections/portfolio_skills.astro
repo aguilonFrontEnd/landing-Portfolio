@@ -1,0 +1,139 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * SECCIÓN SKILLS - Seccion con todas las expericiencias y habilidades del developer
+ * ═══════════════════════════════════════════════════════════════════════════
+ *  Propósito: Mostrar todas las habilidades, experiencia, educación, idiomas y hobbies del developer en un layout de 3 columnas.
+ *  Componentes: Techologys, CardWork, CardEducation, CardLanguages, CardSkills, CardHobbies.
+ * ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+/* COMPONENTES EXTERNOS - Tarjetas modulares */
+import Techologys from "../cards/card_tecnologys.astro";  // Carrusel de tecnologías (infinito)
+import CardWork from "../cards/card-work.astro";          // Timeline de experiencia laboral
+import CardEducation from "../cards/card_education.astro"; // Timeline de educación
+import CardLanguages from "../cards/card-languages.astro"; // Idiomas con barras de nivel
+import CardSkills from "../cards/card_skills.astro";       // Habilidades blandas/técnicas
+import CardHobbies from "../cards/card_hobbies.astro";     // Grid de hobbies con iconos
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN SKILLS - Donde se demuestra todo el expertise                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="skills" data-target="skills" class="relative w-full bg-white-primary pt-16 sm:pt-20 lg:pt-24 px-4">
+  
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- GRADIENTE DECORATIVO: Transición suave desde la sección anterior            -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <span class="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-white-tertiary via-white-tertiary/50 to-transparent" aria-hidden="true"></span>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- HEADER: Título de la sección con línea decorativa                           -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <header class="relative max-w-7xl 2xl:max-w-[95%] 3xl:max-w-[90%] mx-auto mb-5 sm:mb-8 w-full">
+  
+    <div class="relative">
+      <h2
+        id="skills-title"
+        class="relative text-4xl sm:text-5xl lg:text-4xl 2xl:text-5xl font-bold text-yellow-primary"
+      >
+        SKILLS
+      </h2>
+    </div>
+
+    <!-- Línea decorativa inferior -->
+    <span class="block mt-3 h-1 w-full rounded-sm bg-black-primary" aria-hidden="true"></span>
+
+  </header>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- TECHOLOGYS: Carrusel infinito de iconos de tecnologías                       -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <Techologys />
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- MAIN: Grid de 3 columnas con toda la experiencia y habilidades              -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <main class="grid grid-cols-1 lg:grid-cols-3 xl:px-10 gap-4 lg:gap-6 pb-6">
+    
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <!-- ARTICLE: Columna 1 - Experiencia Laboral                                  -->
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <article class="p-5 sm:p-6 h-fit">
+    
+      <!-- Título de la sección -->
+      <header class="mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="w-8 h-8 bg-black-primary rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-briefcase text-white-primary text-sm" aria-hidden="true"></i>
+          </span>
+          <h3 class="text-lg sm:text-xl font-bold text-black-primary tracking-tight">
+            Work Experience
+          </h3>
+        </div>
+        <span class="block h-0.5 w-full bg-linear-to-r from-black-primary to-transparent" aria-hidden="true"></span>
+      </header>
+
+      <!-- CardWork: Timeline de experiencia laboral -->
+      <CardWork />
+
+    </article>
+
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <!-- ARTICLE: Columna 2 - Educación                                            -->
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <article class="p-5 sm:p-6 h-fit">
+    
+      <!-- Título de la sección -->
+      <header class="mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="w-8 h-8 bg-black-primary rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-graduation-cap text-white-primary text-sm" aria-hidden="true"></i>
+          </span>
+          <h3 class="text-lg sm:text-xl font-bold text-black-primary tracking-tight">
+            Education
+          </h3>
+        </div>
+        <span class="block h-0.5 w-full bg-linear-to-r from-black-primary to-transparent" aria-hidden="true"></span>
+      </header>
+
+      <!-- CardEducation: Timeline de educación -->
+      <CardEducation />
+
+    </article>
+
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <!-- ARTICLE: Columna 3 - Hobbies, Idiomas y Habilidades                        -->
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <article class="p-5 sm:p-6 h-fit">
+
+      <!-- Título de la sección -->
+      <header class="mb-6">
+        <div class="flex items-center gap-3 mb-3">
+          <span class="w-8 h-8 bg-black-primary rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-star text-white-primary text-sm" aria-hidden="true"></i>
+          </span>
+          <h3 class="text-lg sm:text-xl font-bold text-black-primary tracking-tight">
+            Hobbies & Languages
+          </h3>
+        </div>
+        <span class="block h-0.5 w-full bg-linear-to-r from-black-primary to-transparent" aria-hidden="true"></span>
+      </header>
+
+      <div class="space-y-8">
+      
+        <!-- CardLanguages: Idiomas con barras de nivel -->
+        <CardLanguages />
+
+        <!-- CardSkills: Habilidades blandas/técnicas -->
+        <CardSkills />
+
+        <!-- CardHobbies: Grid de hobbies con iconos -->
+        <CardHobbies />
+        
+      </div>
+
+    </article>
+    
+  </main>
+
+</section>

@@ -1,0 +1,116 @@
+---
+import "../styles/global.css";
+
+/* DIRECCION DE LA IMAGEN PARA .ICO */
+import logo from "../assets/Img/Navegacion/Img_perfil.jpg";
+
+import Navigation from "../layouts/portfolio_navigation.astro"
+import Footer from "../layouts/portfolio_footer.astro"
+
+import Introduction from "../components/sections/portfolio_introduction.astro"
+import About from "../components/sections/portfolio_about.astro"
+import Skills from "../components/sections/portfolio_skills.astro"
+import Services from "../components/sections/portfolio_services.astro"
+import Projects from "../components/sections/portfolio_projects.astro"
+import Contact from "../components/form/portfolio_contact.astro"
+---
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description" content="Portfolio de desarrollo web, proyectos, servicios y tecnologías utilizadas." />
+
+
+    <!-- ================================================= -->
+    <!-- FAVICON – ICONO DEL SITIO                         -->
+    <!-- ================================================= -->
+    <link
+    rel="icon"
+    type="image/png"
+    type="image/svg+xml"
+    href={logo.src} 
+    />
+
+    <!-- ================================================= -->
+    <!-- FONT AWESOME – ICONOS                             -->
+    <!-- ================================================= -->
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- ================================================= -->
+    <!-- GOOGLE FONTS – TIPOGRAFÍAS PRINCIPALES            -->
+    <!-- ================================================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Inter+Tight:wght@600;700;800;900&family=IBM+Plex+Sans+Condensed:wght@500;700&family=Roboto+Condensed:wght@500;700&display=swap"
+    rel="stylesheet"
+    />
+
+    <title>Welcome to My Portfolio - Alejandro Aguilon Buitrago</title>
+
+</head>
+
+  <body class="relative bg-white-secondary overflow-x-hidden">
+
+    
+  
+    <div class=" absolute bottom-0 right-0 hidden xl:block h-full xl:w-85 2xl:w-150 bg-yellow-secondary"></div>
+
+    <!-- ===================================== -->
+    <!--              NAVIGATION               -->
+    <!-- ===================================== -->
+    <Navigation />
+
+    <!-- ===================================== -->
+    <!--              INTRODUCTION             -->
+    <!-- ===================================== -->
+    <Introduction />
+
+    <!-- ===================================== -->
+    <!--               ABOUT                   -->
+    <!-- ===================================== -->
+    <About />
+
+      <!-- ===================================== -->
+    <!--               SKILLS                  -->
+    <!-- ===================================== -->
+    <Skills />
+
+    <!-- ===================================== -->
+    <!--              SERVICES                 -->
+    <!-- ===================================== -->
+    <Services />
+
+    <!-- ===================================== -->
+    <!--              PROJECTS                 -->
+    <!-- ===================================== -->
+    <Projects />
+
+    <!-- ===================================== -->
+    <!--              CONTACT                  -->
+    <!-- ===================================== -->
+    <Contact />
+
+    <!-- ===================================== -->
+    <!--               FOOTER                  -->
+    <!-- ===================================== -->
+    <Footer />
+
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+	  <script type="module" src="/src/script/index.js"></script>
+
+
+  </body>
+</html>

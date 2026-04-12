@@ -1,0 +1,191 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CARD PROJECTS - GRID DE PROYECTOS
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar el portafolio de proyectos en un grid responsive con
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+/**
+ * DATOS DE PROYECTOS
+ * Cada objeto contiene:
+ * - id: Identificador único
+ * - number: Número de proyecto (ej: "01")
+ * - title: Nombre del proyecto
+ * - description: Descripción corta
+ * - category: Categoría para filtros ('professional', 'landing', 'learning')
+ * - image: Ruta de la imagen de preview
+ * - link: URL del proyecto
+ * - technologies: Array de tecnologías usadas
+ */
+const projectsData = [
+  {
+    id: 1,
+    number: "01",
+    title: "Café Bados",
+    description: "Design and development of a web application for a regional cafe.",
+    category: "professional",
+    image: "/src/assets/Img/Project/cafe bados.jpg",
+    link: "https://grupoconectasoftwa.wixsite.com/cafebados",
+    technologies: ["Wix", "Figma", "Canva"]
+  },
+  {
+    id: 2,
+    number: "02",
+    title: "MyLook",
+    description: "Sass business model for beauty salon appointment scheduling",
+    category: "professional",
+    image: "/src/assets/Img/Project/MyLook.jpg",
+    link: "/projects/portfolio",
+    technologies: ["Laravel", "Tailwind", "MySql", "Figma" , "Hostinguer"]
+  },
+  {
+    id: 3,
+    number: "03",
+    title: "Grupo Conecta Software",
+    description: "Landing Pages for Software Development Startups.",
+    category: "landing",
+    image: "/src/assets/Img/Project/Landing Conecta.jpg",
+    link: "https://www.conectagroupdev.com",
+    technologies: ["JavaScript", "Astro", "Tailwind", "Figma", "Hostinguer"]
+  },
+  {
+    id: 4,
+    number: "04",
+    title: "Wax It",
+    description: "Scheduling platform dedicated to sugar waxing and other private services",
+    category: "professional",
+    image: "/src/assets/Img/Project/Wax It.jpg",
+    link: "https://www.waxitstudio.com/",
+    technologies: ["Wix", "Figma"]
+  },
+  {
+    id: 5,
+    number: "05",
+    title: "Marble Complete",
+    description: "Landing pages intended for a marble and concrete business model in floor restoration in high-end properties",
+    category: "landing",
+    image: "/src/assets/Img/Project/Marble Complete.jpg",
+    link: "/projects/task-manager",
+    technologies: ["WordPress", "Hostinguer", "Figma", "Elementor", "Hostinguer"]
+  },
+  {
+    id: 6,
+    number: "06",
+    title: "Marble Complete - REMASTERED",
+    description: "Landing pages intended for a marble and concrete business model in floor restoration in high-end properties",
+    category: "landing",
+    image: "/src/assets/Img/Project/Marble Complete 2.0.jpg",
+    link: "https://aguilondevelopsoft.wixsite.com/misitio",
+    technologies: ["WordPress", "Hostinguer", "Figma", "Elementor"]
+  },
+  {
+    id: 7,
+    number: "07",
+    title: "My Portfolio - Alejandro Aguilon Buitrago",
+    description: "Landing pages with my portfolio and projects prfesional and learning and landing pages and more",
+    category: "landing",
+    image: "/src/assets/Img/Project/Portfolio.jpg",
+    link: "/projects/task-manager",
+    technologies: ["Astro", "Tailwind", "Resend", "Vercel", "Figma"]
+  },
+  {
+    id: 8,
+    number: "08",
+    title: "DarkShop Ecommerce",
+    description: "Ecommerce of clothes black and dark style with a lot of products and more",
+    category: "professional",
+    image: "/src/assets/Img/Project/Marble Complete.jpg",
+    link: "/projects/task-manager",
+    technologies: ["Laravel", "Css", "Figma", "JavaScript", "MySQL", "Hostinguer"]
+  },
+  {
+    id: 9,
+    number: "09",
+    title: "ETL - Sultana Del Valle S.A.S",
+    description: "Platform for data extraction, transformation, and loading (ETL) to optimize data management and reporting processes for Sultana Del Valle S.A.S.",
+    category: "professional",
+    image: "/src/assets/Img/Project/ETL Sultana Del Valle.jpg",
+    link: "/projects/task-manager",
+    technologies: ["Laravel", "Power BI", "Figma", "Spyder" , "Excel", "Css", "JavaScript", "MySQL", "Hostinguer"]
+  }
+];
+---
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- GRID DE PROYECTOS - Donde el trabajo habla por sí solo                        -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section 
+  class="max-w-7xl 2xl:max-w-[95%] 3xl:max-w-[90%] mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7"
+  role="list"
+  aria-label="Lista de proyectos"
+  id="projects-grid"
+>
+  {projectsData.map((project) => (
+    <article 
+      class="project-card group bg-white-primary border border-gray-primary/30 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
+      role="listitem"
+      data-category={project.category}
+    >
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      {/* FIGURE: Imagen del proyecto con overlay en hover                       */}
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      <figure class="relative overflow-hidden h-48 sm:h-52 lg:h-56 2xl:h-64">
+        <img
+          src={project.image}
+          alt={`Vista previa del proyecto ${project.title}`}
+          class="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+          loading="lazy"
+        />
+        <figcaption class="sr-only">{project.title} - Project preview</figcaption>
+        {/* Overlay gradiente que aparece en hover */}
+        <span class="absolute inset-0 bg-linear-to-t from-black-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></span>
+      </figure>
+
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      {/* SECTION: Contenido textual del proyecto                                 */}
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      <section class="p-5 sm:p-6 2xl:p-7 flex flex-col gap-3 sm:gap-4 flex-1">
+        
+        {/* HEADER: Título y número de proyecto */}
+        <header class="flex items-start justify-between gap-3">
+          <h3 class="text-lg sm:text-xl 2xl:text-2xl font-bold text-black-primary group-hover:text-yellow-primary transition">
+            {project.title}
+          </h3>
+          <span class="text-4xl sm:text-5xl 2xl:text-6xl font-bold text-gray-primary/20 -mt-2 leading-none" aria-label={`Project number ${project.number}`}>
+            {project.number}
+          </span>
+        </header>
+
+        {/* Descripción del proyecto */}
+        <p class="text-gray-quaternary text-sm 2xl:text-base leading-relaxed">
+          {project.description}
+        </p>
+
+        {/* MENU: Chips de tecnologías usadas */}
+        <menu class="flex flex-wrap gap-2 mt-1 not-italic" aria-label="Technologies used">
+          {project.technologies.map((tech) => (
+            <li class="list-none">
+              <span class="px-3 py-1.5 2xl:px-4 2xl:py-2 bg-transparent border border-yellow-primary text-yellow-primary text-xs 2xl:text-sm rounded-full font-medium hover:bg-yellow-primary hover:text-black-primary transition-all duration-300 cursor-default">
+                {tech}
+              </span>
+            </li>
+          ))}
+        </menu>
+
+        {/* FOOTER: Botón para ver el proyecto */}
+        <footer class="mt-auto pt-2">
+          <a
+            href={project.link}
+            class="inline-block w-full text-center bg-black-secondary text-white-primary text-sm 2xl:text-base font-medium px-5 py-3 2xl:py-4 rounded-lg hover:bg-black-primary hover:text-white-primary hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
+            aria-label={`View project ${project.title}`}
+          >
+            View Project
+          </a>
+        </footer>
+        
+      </section>
+    </article>
+  ))}
+</section>

@@ -1,0 +1,95 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CARD LANGUAGES - IDIOMAS CON BARRAS DE NIVEL
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar los idiomas que domina el developer con barras visuales.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/**
+ * DATOS DE IDIOMAS
+ * Cada objeto contiene:
+ * - flag: Emoji de la bandera representativa
+ * - name: Nombre del idioma
+ * - level: Nivel (Native, A1, B1, etc.)
+ * - percentage: Porcentaje para la barra de progreso (ej: "100%")
+ * - isActive: Si es nativo o nivel alto (true = estilo destacado)
+ */
+const languagesData = [
+  {
+    flag: "🇪🇸",
+    name: "Spanish",
+    level: "Native",
+    percentage: "100%",
+    isActive: true
+  },
+  {
+    flag: "🇺🇸",
+    name: "English",
+    level: "A1",
+    percentage: "60%",
+    isActive: false
+  }
+];
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- IDIOMAS - Comunicación sin fronteras                                          -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section>
+  
+  {/* HEADER: Título de la sección */}
+  <header>
+    <h4 class="text-black-primary font-bold text-sm sm:text-base mb-4 flex items-center gap-2">
+      <i class="fa-solid fa-language text-yellow-primary text-xs" aria-hidden="true"></i>
+      LANGUAGES
+    </h4>
+  </header>
+
+  {/* MENU: Lista de idiomas */}
+  <menu class="space-y-4 not-italic">
+    
+    {languagesData.map((lang) => (
+      <li>
+        <article>
+          
+          {/* HEADER DEL IDIOMA: Bandera, nombre y badge de nivel */}
+          <header class="flex justify-between items-center mb-1.5">
+            <figure class="flex items-center gap-2">
+              <span class="text-lg" role="img" aria-label={`${lang.name} flag`}>{lang.flag}</span>
+              <figcaption class="text-black-primary font-medium text-sm">{lang.name}</figcaption>
+            </figure>
+            
+            {/* Badge de nivel (Native, A1, etc.) */}
+            <span class={`text-xs font-medium px-2 py-0.5 rounded-full
+              ${lang.isActive 
+                ? 'bg-yellow-primary/20 text-yellow-primary' 
+                : 'bg-black-primary/10 text-black-primary'
+              }`}
+            >
+              {lang.level}
+            </span>
+          </header>
+          
+          {/* BARRA DE PROGRESO: Representación visual del nivel */}
+          <figure class="h-2 w-full bg-black-primary/5 rounded-full overflow-hidden">
+            <span 
+              class="block h-full bg-linear-to-r from-yellow-primary to-yellow-primary/60 rounded-full" 
+              style={`width: ${lang.percentage}`}
+              role="progressbar"
+              aria-valuenow={parseInt(lang.percentage)}
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label={`${lang.name} proficiency: ${lang.level}`}
+            ></span>
+            <figcaption class="sr-only">{lang.name} proficiency: {lang.level} ({lang.percentage})</figcaption>
+          </figure>
+          
+        </article>
+      </li>
+    ))}
+
+  </menu>
+  
+</section>

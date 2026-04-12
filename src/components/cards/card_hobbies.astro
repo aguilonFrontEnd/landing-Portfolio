@@ -1,0 +1,65 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CARD HOBBIES - GRID DE ICONOS INTERACTIVOS
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar los hobbies del developer en un grid de iconos circulares.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/**
+ * DATOS DE HOBBIES
+ * Cada objeto contiene:
+ * - icon: Clase de Font Awesome para el icono
+ * - name: Nombre del hobby (para tooltip y accesibilidad)
+ */
+const hobbiesData = [
+  { icon: "fa-solid fa-gamepad", name: "Gaming" },
+  { icon: "fa-solid fa-book-open", name: "Reading" },
+  { icon: "fa-solid fa-laptop-code", name: "Coding" },
+  { icon: "fa-solid fa-headphones", name: "Music" },
+  { icon: "fa-solid fa-palette", name: "Art" },
+  { icon: "fa-solid fa-futbol", name: "Soccer" },
+  { icon: "fa-solid fa-camera", name: "Photography" },
+  { icon: "fa-solid fa-paintbrush", name: "Design" },
+  { icon: "fa-solid fa-mug-saucer", name: "Coffee" },
+  { icon: "fa-solid fa-motorcycle", name: "Motorcycle" },
+  { icon: "fa-solid fa-tree", name: "Nature" },
+  { icon: "fa-solid fa-broom", name: "Cleaning" }
+];
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- HOBBIES - La vida más allá del código                                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section>
+  
+  {/* HEADER: Título de la sección */}
+  <header>
+    <h4 class="text-black-primary font-bold text-sm sm:text-base mb-4 flex items-center gap-2">
+      <i class="fa-solid fa-heart text-yellow-primary text-xs" aria-hidden="true"></i>
+      MY HOBBIES
+    </h4>
+  </header>
+
+  {/* MENU: Grid de iconos de hobbies */}
+  <menu class="flex flex-wrap gap-4 sm:gap-5 not-italic">
+    {hobbiesData.map((hobby) => (
+      <li class="group relative list-none">
+        
+        {/* FIGURE: Círculo con icono y efectos hover */}
+        <figure 
+          class="w-11 h-11 flex items-center justify-center rounded-full bg-black-primary text-white-primary shadow-md group-hover:bg-yellow-primary group-hover:text-black-primary group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+          title={hobby.name}
+          role="figure"
+          aria-label={hobby.name}
+        >
+          <i class={`${hobby.icon} text-sm`} aria-hidden="true"></i>
+          <figcaption class="sr-only">{hobby.name}</figcaption>
+        </figure>
+        
+      </li>
+    ))}
+  </menu>
+  
+</section>

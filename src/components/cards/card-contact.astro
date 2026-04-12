@@ -1,0 +1,115 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CARD CONTACT - INFORMACIÓN DE CONTACTO
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar los datos de contacto del developer en una card elegante.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/**
+ * DATOS DE CONTACTO
+ * Cada objeto contiene:
+ * - type: Tipo de contacto (para accesibilidad)
+ * - icon: Clase de Font Awesome
+ * - value: Texto a mostrar
+ * - link: URL (solo si isLink es true)
+ * - isLink: Si debe renderizarse como <a> o <span>
+ */
+const contactData = [
+  {
+    id: 1,
+    type: "email",
+    icon: "fa-regular fa-envelope",
+    value: "aguilondevelopsoft@gmail.com",
+    link: "mailto:aguilondevelopsoft@gmail.com",
+    isLink: true
+  },
+  {
+    id: 2,
+    type: "phone",
+    icon: "fa-brands fa-whatsapp",
+    value: "+57 318 411 1790",
+    isLink: false
+  },
+  {
+    id: 3,
+    type: "linkedin",
+    icon: "fa-brands fa-linkedin",
+    value: "linkedin.com/alejandro-aguilon-buitrago",
+    isLink: false
+  },
+  {
+    id: 4,
+    type: "github",
+    icon: "fa-brands fa-github",
+    value: "github/aguilonFrontEnd",
+    isLink: false
+  },
+  {
+    id: 5,
+    type: "location",
+    icon: "fa-solid fa-location-dot",
+    value: "Cra12D #58-09 Cali, Colombia",
+    isLink: false
+  }
+];
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- CARD DE INFORMACIÓN - Donde te pueden encontrar                               -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<article class="relative w-full max-w-95 lg:max-w-sm xl:max-w-md 2xl:max-w-lg bg-black-primary rounded-2xl px-6 sm:px-8 lg:px-6 xl:px-8 2xl:px-10 py-10 lg:py-8 xl:py-12 2xl:py-16 flex flex-col justify-between shadow-2xl hover:shadow-3xl transition-shadow duration-500">
+  
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- HEADER: Título de la card (FUERA DEL ARREGLO)                               -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <header>
+    <h3 class="text-white-primary text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold tracking-wide mb-8 lg:mb-6 xl:mb-8">
+      Information
+    </h3>
+  </header>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- ADDRESS: Lista de contacto (AQUÍ VA EL ARREGLO)                              -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <address class="flex flex-col gap-6 lg:gap-5 xl:gap-6 2xl:gap-8 text-white-primary/90 not-italic">
+    
+    {contactData.map((item) => (
+      <article class="flex items-center gap-4 group cursor-pointer">
+        
+        <!-- FIGURE: Contenedor del icono con efectos hover -->
+        <figure class="w-10 h-10 lg:w-8 lg:h-8 xl:w-10 xl:h-10 2xl:w-12 2xl:h-12 flex items-center justify-center bg-white-primary/10 rounded-lg group-hover:bg-white-primary group-hover:scale-110 transition-all duration-300">
+          <i class={`${item.icon} text-lg lg:text-base xl:text-lg 2xl:text-xl text-white-primary group-hover:text-black-primary transition-colors`} aria-hidden="true"></i>
+          <figcaption class="sr-only">{item.type}</figcaption>
+        </figure>
+        
+        {/* Renderizado condicional: <a> si es link, <span> si es texto */}
+        {item.isLink ? (
+          <a 
+            href={item.link} 
+            class="text-sm lg:text-xs xl:text-sm 2xl:text-base hover:text-white-primary transition truncate max-w-50 lg:max-w-45 xl:max-w-55 2xl:max-w-70"
+          >
+            {item.value}
+          </a>
+        ) : (
+          <span class="text-sm lg:text-xs xl:text-sm 2xl:text-base group-hover:text-white-primary transition truncate max-w-50 lg:max-w-45 xl:max-w-55 2xl:max-w-70">
+            {item.value}
+          </span>
+        )}
+        
+      </article>
+    ))}
+
+  </address>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- FOOTER: Decoración inferior (tres puntos blancos)                           -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <footer class="mt-8 lg:mt-6 xl:mt-8 flex gap-2" aria-hidden="true">
+    <span class="w-2 h-2 bg-white-primary rounded-full"></span>
+    <span class="w-2 h-2 bg-white-primary/60 rounded-full"></span>
+    <span class="w-2 h-2 bg-white-primary/30 rounded-full"></span>
+  </footer>
+
+</article>

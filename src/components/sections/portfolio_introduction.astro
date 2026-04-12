@@ -1,0 +1,298 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * SECCIÓN HERO - Sección de introducción
+ * ═══════════════════════════════════════════════════════════════════════════
+ * La primera impresión es lo que cuenta. Esta sección da la introduccion al portfaolio
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+import { Image } from "astro:assets";
+import logo from "../../assets/Img/Introduccion/img_introduccion.jpg";
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- HERO SECTION - Donde todo comienza                                           -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section data-target="introduction" id="introduction" class="z-10 relative min-h-screen w-full overflow-hidden bg-black-primary font-inter">
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- FIGURE: Imagen de fondo con overlays y efectos de luz                       -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <figure class="absolute inset-0 w-full h-full">
+    <Image
+      src={logo}
+      alt="Alejandro Aguilon - Fotografía profesional"
+      class="w-full h-full object-cover brightness-90 contrast-100"
+      loading="eager"
+    />
+    <figcaption class="sr-only">Fotografía de fondo de Alejandro Aguilon</figcaption>
+    
+    <!-- Overlay oscuro para que el texto resalte -->
+    <span class="absolute inset-0 bg-linear-to-r from-black/90 via-black/70 to-black/80" aria-hidden="true"></span>
+    
+    <!-- Efectos de luz amarilla (glow) - Se adaptan a cada breakpoint -->
+    <span class="absolute -top-40 -right-40 w-150 sm:w-160 md:w-170 lg:w-175 xl:w-180 2xl:w-225 h-150 sm:h-160 md:h-170 lg:h-175 xl:h-180 2xl:h-225 bg-yellow-primary/30 blur-[300px] md:blur-[310px] lg:blur-[315px] xl:blur-[320px] 2xl:blur-[400px] rounded-full" aria-hidden="true"></span>
+    <span class="absolute -bottom-40 left-20 w-125 sm:w-130 md:w-135 lg:w-138 xl:w-140 2xl:w-175 h-125 sm:h-130 md:h-135 lg:h-138 xl:h-140 2xl:h-175 bg-yellow-primary/20 blur-[250px] md:blur-[260px] lg:blur-[265px] xl:blur-[270px] 2xl:blur-[350px] rounded-full" aria-hidden="true"></span>
+  </figure>
+ 
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- ARTICLE: Versión Mobile y Tablet (se oculta en XL+)                         -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <article class="relative xl:hidden flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-8 z-10">
+
+    <!-- Puntos decorativos (esquina superior izquierda) -->
+    <span class="absolute top-6 sm:top-8 md:top-10 left-4 sm:left-5 md:left-6 flex gap-1.5 sm:gap-2" aria-hidden="true">
+      <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-yellow-primary rounded-full"></span>
+      <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-gray-secondary/60 rounded-full"></span>
+      <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-gray-secondary/40 rounded-full"></span>
+    </span>
+
+    <!-- Grid de puntos (esquina superior derecha) -->
+    <span class="absolute top-16 sm:top-20 right-4 sm:right-6 grid grid-cols-8 gap-1.5 sm:gap-2 opacity-40" aria-hidden="true">
+      {Array.from({ length: 32 }).map(() => (
+        <span class="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-yellow-primary/40 rounded-full"></span>
+      ))}
+    </span>
+    
+    <!-- Grid de puntos (esquina inferior izquierda) -->
+    <span class="absolute bottom-32 sm:bottom-36 md:bottom-40 left-3 sm:left-4 grid grid-cols-5 gap-2 sm:gap-3 opacity-30" aria-hidden="true">
+      {Array.from({ length: 15 }).map(() => (
+        <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-yellow-primary/30 rounded-full"></span>
+      ))}
+    </span>
+
+    <!-- Contenido textual principal -->
+    <header class="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+      <div class="flex flex-col items-center text-center gap-2 sm:gap-3">
+        <p class="text-gray-secondary text-2xl sm:text-3xl md:text-4xl xl:text-2xl tracking-wide font-light">
+          MY NAME IS
+        </p>
+
+        <hgroup>
+          <h1 class="text-white font-black">
+            <span class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl block tracking-tight">ALEJANDRO</span>
+            <span class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl block text-yellow-primary mt-1 sm:mt-2 tracking-tight drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]">AGUILON</span>
+            <span class="text-xl sm:text-2xl md:text-3xl lg:text-4xl block text-gray-secondary/80 mt-2 sm:mt-3 font-light">BUITRAGO</span>
+          </h1>
+        </hgroup>
+
+        <p class="bg-yellow-primary text-black-primary font-bold mt-4 sm:mt-6 px-6 sm:px-8 py-3 sm:py-4 rounded-md text-base sm:text-lg md:text-xl shadow-2xl shadow-yellow-primary/30 cursor-pointer hover:scale-105 transition-all">
+          FRONT END DEVELOPER
+        </p>
+      </div>
+    </header>
+
+    <!-- Navegación de redes sociales -->
+    <nav class="absolute bottom-24 sm:bottom-28 md:bottom-32 left-1/2 -translate-x-1/2 flex gap-6 sm:gap-8" aria-label="Redes sociales">
+      <a href="#" class="text-white/60 hover:text-yellow-primary text-2xl sm:text-3xl transition-all hover:scale-110" aria-label="Email">
+        <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+      </a>
+      <a href="#" class="text-white/60 hover:text-yellow-primary text-2xl sm:text-3xl transition-all hover:scale-110" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+      </a>
+      <a href="#" class="text-white/60 hover:text-yellow-primary text-2xl sm:text-3xl transition-all hover:scale-110" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+      </a>
+      <a href="#" class="text-white/60 hover:text-yellow-primary text-2xl sm:text-3xl transition-all hover:scale-110" aria-label="GitHub">
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+      </a>
+    </nav>
+
+    <!-- Indicador de scroll -->
+    <footer class="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 sm:gap-2">
+      <span class="w-5 sm:w-6 h-8 sm:h-10 border-2 border-white/30 rounded-full flex justify-center" aria-hidden="true">
+        <span class="w-0.5 sm:w-1 h-1.5 sm:h-2 bg-yellow-primary rounded-full mt-1.5 sm:mt-2 animate-scroll"></span>
+      </span>
+      <span class="text-white/40 text-[8px] sm:text-[10px] tracking-widest uppercase">Scroll</span>
+    </footer>
+
+  </article>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- MAIN: Versión Desktop (XL+) - Dos columnas                                 -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <main class="hidden xl:grid xl:grid-cols-2 relative min-h-screen">
+
+    <!-- ASIDE: Panel izquierdo - Toda la información personal -->
+    <aside class="flex flex-col justify-center px-8 lg:px-12 xl:px-16 2xl:px-18 bg-linear-to-br from-black via-black-primary to-gray-900 relative min-h-screen">
+
+      <!-- Puntos decorativos (capa 1 - grande) -->
+      <span class="absolute top-16 lg:top-20 left-8 lg:left-12 grid grid-cols-12 gap-3 lg:gap-4" aria-hidden="true">
+        {Array.from({ length: 72 }).map(() => (
+          <span class="w-3 lg:w-4 h-3 lg:h-4 bg-yellow-primary/30 rounded-full animate-pulse"></span>
+        ))}
+      </span>
+      
+      <!-- Puntos decorativos (capa 2 - media) -->
+      <span class="absolute bottom-32 lg:bottom-40 right-16 lg:right-20 grid grid-cols-10 gap-2 lg:gap-3 opacity-40" aria-hidden="true">
+        {Array.from({ length: 40 }).map(() => (
+          <span class="w-2 lg:w-3 h-2 lg:h-3 bg-yellow-primary/20 rounded-full"></span>
+        ))}
+      </span>
+      
+      <!-- Puntos decorativos (capa 3 - pequeña) -->
+      <span class="absolute top-1/2 left-1/3 grid grid-cols-8 gap-1.5 lg:gap-2 opacity-30" aria-hidden="true">
+        {Array.from({ length: 24 }).map(() => (
+          <span class="w-1.5 lg:w-2 h-1.5 lg:h-2 bg-yellow-primary/40 rounded-full animate-ping-slow"></span>
+        ))}
+      </span>
+
+      <!-- Círculos decorativos de fondo -->
+      <span class="absolute bottom-16 lg:bottom-20 right-16 lg:right-20 w-60 lg:w-80 h-60 lg:h-80 border-2 border-yellow-primary/20 rounded-full blur-sm" aria-hidden="true"></span>
+      <span class="absolute bottom-24 lg:bottom-32 right-24 lg:right-32 w-40 lg:w-52 h-40 lg:h-52 border border-yellow-primary/30 rounded-full" aria-hidden="true"></span>
+      <span class="absolute top-32 lg:top-40 right-32 lg:right-40 w-24 lg:w-32 h-24 lg:h-32 border-2 border-yellow-primary/40 rounded-full animate-pulse-slow" aria-hidden="true"></span>
+      <span class="absolute top-48 lg:top-60 left-32 lg:left-40 w-32 lg:w-40 h-32 lg:h-40 border border-yellow-primary/20 rounded-full" aria-hidden="true"></span>
+      
+      <!-- Brillos de fondo -->
+      <span class="absolute top-1/3 left-1/4 w-72 lg:w-96 h-72 lg:h-96 bg-yellow-primary/10 blur-[100px] rounded-full" aria-hidden="true"></span>
+      <span class="absolute bottom-1/3 right-1/4 w-60 lg:w-80 h-60 lg:h-80 bg-yellow-primary/5 blur-[120px] rounded-full" aria-hidden="true"></span>
+
+      <!-- Navegación de redes sociales (desktop) -->
+      <nav class="absolute top-8 lg:top-6 2xl:top-5 left-8 lg:left-12 right-8 lg:right-12 flex justify-between items-center z-20" aria-label="Redes sociales">
+        <span class="flex gap-3 lg:gap-4">
+          <a href="#" class="text-gray-secondary hover:text-yellow-primary text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl transition-all hover:scale-110 drop-shadow-lg" aria-label="Email">
+            <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="text-gray-secondary hover:text-yellow-primary text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl transition-all hover:scale-110 drop-shadow-lg" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="text-gray-secondary hover:text-yellow-primary text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl transition-all hover:scale-110 drop-shadow-lg" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+          </a>
+        </span>
+        <a href="#" class="text-gray-secondary hover:text-yellow-primary text-xl lg:text-2xl xl:text-2xl 2xl:text-4xl transition-all hover:scale-110 drop-shadow-lg" aria-label="GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+      </nav>
+
+      <!-- Contenido principal: Nombre, rol, ubicación -->
+      <article class="relative z-10 max-w-163 flex xl:mt-20 flex-col gap-1">
+
+        <p class="text-gray-secondary text-2xl xl:pl-4 lg:text-3xl xl:text-2xl 2xl:text-3xl tracking-wide font-light drop-shadow-lg">
+          MY NAME IS
+        </p>
+
+        <hgroup>
+          <h2 class="text-white font-black text-5xl lg:text-6xl xl:text-7xl 2xl:text-9xl leading-none tracking-tighter drop-shadow-2xl">
+            ALEJANDRO
+          </h2>
+          <p class="text-yellow-primary font-black text-5xl lg:text-6xl xl:text-7xl 2xl:text-9xl leading-none tracking-tighter drop-shadow-[0_0_25px_rgba(251,191,36,0.7)]">
+            AGUILON
+          </p>
+          <p class="text-gray-secondary/70 text-2xl lg:text-3xl xl:text-4xl 2xl:text-7xl font-light tracking-wide mt-2 lg:mt-0">
+            BUITRAGO
+          </p>
+        </hgroup>
+
+        <!-- Línea decorativa amarilla -->
+        <span class="w-24 lg:w-28 xl:w-32 2xl:w-40 h-1 lg:h-1.5 bg-yellow-primary mt-2 lg:mt-3 xl:mt-4 shadow-[0_0_20px_rgba(251,191,36,0.7)] rounded-full" aria-hidden="true"></span>
+
+        <!-- Botón de profesión -->
+        <p class="bg-yellow-primary text-black-primary font-bold px-5 lg:px-6 xl:px-8 2xl:px-12 py-3 lg:py-4 xl:py-5 2xl:py-6 rounded-xl text-lg lg:text-xl xl:text-2xl 2xl:text-3xl w-fit shadow-2xl hover:shadow-yellow-primary/60 transition-all hover:scale-101 mt-3 lg:mt-4 xl:mt-5 2xl:mt-6 tracking-wide cursor-pointer">
+          FRONT END DEVELOPER
+        </p>
+
+        <!-- Ubicación -->
+        <footer class="flex items-center gap-2 lg:gap-3 xl:gap-4 mt-4 lg:mt-5 xl:mt-7 2xl:mt-8">
+          <i class="fa-solid fa-location-dot text-yellow-primary text-lg lg:text-xl xl:text-2xl 2xl:text-3xl drop-shadow-lg" aria-hidden="true"></i>
+          <span class="text-white/90 text-sm lg:text-base xl:text-lg 2xl:text-xl tracking-wide font-light">Cali, Colombia</span>
+        </footer>
+
+      </article>
+
+      <!-- Edad (24 años) -->
+      <footer class="absolute bottom-12 lg:bottom-14 xl:bottom-12 2xl:bottom-16 right-12 lg:right-14 xl:right-16 text-right">
+        <span class="text-yellow-primary text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-black block leading-none drop-shadow-[0_0_30px_rgba(251,191,36,0.6)]">24</span>
+        <span class="text-gray-secondary/60 text-xs lg:text-sm tracking-widest block mt-1 lg:mt-2 font-light">AÑOS</span>
+      </footer>
+
+      <!-- Brillo inferior decorativo -->
+      <span class="absolute bottom-0 left-0 w-full h-32 lg:h-40 bg-linear-to-t from-yellow-primary/20 to-transparent" aria-hidden="true"></span>
+
+    </aside>
+
+    <!-- FIGURE: Panel derecho - Imagen de perfil -->
+    <figure class="relative h-screen overflow-hidden">
+      
+      <span class="absolute inset-0">
+        <Image
+          src={logo}
+          alt="Alejandro Aguilon - Fotografía de perfil"
+          class="w-full h-full object-cover brightness-90"
+          loading="eager"
+        />
+      </span>
+      <figcaption class="sr-only">Fotografía de perfil de Alejandro Aguilon</figcaption>
+      
+      <!-- Overlay sobre la imagen -->
+      <span class="absolute inset-0 bg-linear-to-t from-black/60 via-black/30 to-black/40" aria-hidden="true"></span>
+      
+      <!-- Glow amarillo sobre la imagen -->
+      <span class="absolute -top-40 -right-40 w-150 lg:w-155 xl:w-160 2xl:w-175 h-150 lg:h-155 xl:h-160 2xl:h-175 bg-yellow-primary/10 blur-[250px] lg:blur-[260px] xl:blur-[270px] 2xl:blur-[300px] rounded-full" aria-hidden="true"></span>
+ 
+      <!-- Puntos decorativos sobre la imagen -->
+      <span class="absolute top-16 lg:top-20 left-16 lg:left-20 grid grid-cols-4 gap-2 lg:gap-3 opacity-30" aria-hidden="true">
+        {Array.from({ length: 12 }).map(() => (
+          <span class="w-1.5 lg:w-2 h-1.5 lg:h-2 bg-yellow-primary/30 rounded-full"></span>
+        ))}
+      </span>
+
+    </figure>
+
+  </main>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ANIMACIONES GLOBALES - Lo que le da vida al portafolio                       -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<style is:global>
+  /* Animación del indicador de scroll (mouse) */
+  @keyframes scroll {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(15px); }
+  }
+  .animate-scroll { animation: scroll 1.8s infinite ease-in-out; }
+
+  /* Animación de pulso para puntos decorativos */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+  .animate-pulse { animation: pulse 3s infinite; }
+  
+  /* Animación de ping lento (expansión) */
+  @keyframes ping-slow {
+    0% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+  .animate-ping-slow { animation: ping-slow 3s infinite; }
+  
+  /* Animación de pulso lento para círculos */
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
+  }
+  .animate-pulse-slow { animation: pulse-slow 5s infinite; }
+
+  .font-inter { font-family: 'Inter', sans-serif; }
+  a, button, [cursor-pointer] { transition: all 0.3s ease; }
+  
+  /* Ajustes para pantallas muy pequeñas (ej. iPhone SE) */
+  @media (max-width: 360px) {
+    .text-4xl { font-size: 2rem; }
+    .text-5xl { font-size: 2.5rem; }
+  }
+  
+  /* Ajustes para tablets en orientación landscape */
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .min-h-screen { min-height: 100vh; }
+  }
+  
+  /* Ajustes para pantallas 4K */
+  @media (min-width: 2560px) {
+    .text-9xl { font-size: 10rem; }
+    .text-8xl { font-size: 9rem; }
+  }
+</style>

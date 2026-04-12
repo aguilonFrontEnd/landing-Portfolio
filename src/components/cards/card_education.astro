@@ -1,0 +1,137 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CARD EDUCATION - TIMELINE DE EDUCACIÓN
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar la formación académica del developer en orden cronológico.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/**
+ * DATOS DE EDUCACIÓN
+ * Cada objeto contiene:
+ * - year: Año de inicio/finalización
+ * - title: Nombre del título o nivel educativo
+ * - institution: Nombre de la institución
+ * - location: Ciudad y país
+ * - isActive: Si está actualmente en curso (true = estilo amarillo)
+ * - activeText: Texto a mostrar cuando está activo
+ */
+const educationData = [
+  {
+    year: "2007",
+    title: "PRIMARY EDUCATION",
+    institution: "Institución Educativa Villacolombia",
+    location: "Cali, Colombia",
+    isActive: false
+  },
+  {
+    year: "2019",
+    title: "SECONDARY EDUCATION",
+    institution: "Institución Educativa Villacolombia",
+    location: "Cali, Colombia",
+    isActive: false
+  },
+  {
+    year: "2022",
+    title: "VISUAL MERCHANDISING",
+    institution: "Talento Global",
+    location: "Cali, Colombia",
+    isActive: false
+  },
+  {
+    year: "2023",
+    title: "SOFTWARE ANALYSIS AND DEVELOPMENT",
+    institution: "Centro de Electricidad y Automatización Industrial - SENA",
+    location: "Cali, Colombia",
+    isActive: false
+  },
+  {
+    year: "2024",
+    title: "MENTION THE BEST STUDENT IN SOFTWARE ANALYSIS AND DEVELOPMENT",
+    institution: "Centro de Electricidad y Automatización Industrial - SENA",
+    location: "Cali, Colombia",
+    isActive: false
+  },
+  {
+    year: "2024",
+    title: "BOOTCAMP IN ANALYTICS AND DATA SCIENCE",
+    institution: "Centro de Electricidad y Automatización Industrial - SENA",
+    location: "Cali, Colombia",
+    isActive: false
+  },
+  {
+    year: "2026",
+    title: "SOFTWARE BOOTCAMP",
+    institution: "Talento Tech - Develop Software",
+    location: "Cali, Colombia",
+    isActive: false
+  },
+  {
+    year: "2026",
+    title: "SOFTWARE ENGINEERING",
+    institution: "Corporación Universitaria Minuto de Dios (Uniminuto)",
+    location: "Cali, Colombia",
+    isActive: true,
+    activeText: "Currently studying"
+  }
+];
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- TIMELINE DE EDUCACIÓN - Los cimientos del conocimiento                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section class="relative">
+    
+  <!-- Línea vertical decorativa que conecta todos los items -->
+  <span class="absolute left-7 top-2 bottom-2 w-0.5 bg-linear-to-b from-yellow-primary via-black-primary/20 to-transparent" aria-hidden="true"></span>
+
+  {educationData.map((edu) => (
+    <article class="relative flex items-start gap-5 mb-8 group">
+      
+      {/* AÑO: Círculo decorativo con el año */}
+      <time datetime={edu.year} class={`relative z-10 flex items-center justify-center w-15 h-15 rounded-full text-xs font-bold shadow-md transition-all duration-300
+        ${edu.isActive 
+          ? 'bg-yellow-primary text-black-primary group-hover:bg-black-primary group-hover:text-white-primary' 
+          : 'bg-black-primary text-white-primary group-hover:bg-yellow-primary'
+        } group-hover:scale-110`}
+      >
+        {edu.year}
+      </time>
+
+      {/* CONTENIDO: Título, institución, ubicación y badge de activo */}
+      <section class="flex-1 pt-1.5">
+        
+        {/* Título del programa educativo */}
+        <header>
+          <h4 class="text-black-primary font-bold text-sm sm:text-base group-hover:text-yellow-primary transition-colors">
+            {edu.title}
+          </h4>
+        </header>
+        
+        {/* Nombre de la institución */}
+        <p class="text-gray-quaternary text-xs sm:text-sm mt-0.5">
+          {edu.institution}
+        </p>
+        
+        {/* Ubicación con icono de localización */}
+        <address class="text-gray-tertiary text-[10px] sm:text-xs mt-1 flex items-center gap-1 not-italic">
+          <i class="fa-solid fa-location-dot text-[8px]" aria-hidden="true"></i> 
+          {edu.location}
+        </address>
+        
+        {/* Badge para el item actualmente activo */}
+        {edu.isActive && (
+          <footer class="mt-2">
+            <span class="inline-block text-[10px] font-medium bg-yellow-primary/20 text-yellow-primary px-2 py-0.5 rounded-full">
+              {edu.activeText}
+            </span>
+          </footer>
+        )}
+        
+      </section>
+
+    </article>
+  ))}
+
+</section>

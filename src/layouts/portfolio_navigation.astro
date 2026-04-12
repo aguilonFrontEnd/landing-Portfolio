@@ -1,0 +1,191 @@
+---
+// src/components/layouts/portfolio_navigation.astro
+import ImagesNavegation from "../assets/Img/Navegacion/Img_perfil.jpg";
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- MENÚ DE NAVEGACIÓN - XL/2XL: DESKTOP | RESTO: HAMBURGUESA                     -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- ===== BOTÓN HAMBURGUESA (MOBILE/TABLET/IPAD - TODO MENOS XL/2XL) ===== -->
+<button 
+  id="menu-toggle"
+  class="fixed z-30 top-4 right-4 w-12 h-12 xl:hidden flex items-center justify-center bg-black-primary/80 backdrop-blur-sm rounded-full shadow-lg [box-shadow:_0_0_8px_rgba(212,175,55,0.5)]"
+  aria-label="Abrir menú"
+  aria-expanded="false"
+>
+  <span id="menu-icon" class="text-2xl text-yellow-primary [text-shadow:_0_0_5px_rgba(212,175,55,0.8)]">☰</span>
+</button>
+
+<!-- ===== MENÚ LATERAL (MOBILE/TABLET/IPAD - TODO MENOS XL/2XL) ===== -->
+<aside 
+  id="mobile-menu"
+  class="fixed z-40 inset-0 bg-black-primary/95 backdrop-blur-md flex-col transition-all duration-300 ease-out opacity-0 pointer-events-none xl:hidden"
+  aria-hidden="true"
+>
+  <div class="flex flex-col h-full p-6">
+    
+    <button 
+      id="menu-close"
+      class="self-end w-10 h-10 flex items-center justify-center rounded-full mb-4"
+      aria-label="Cerrar menú"
+    >
+      <span class="text-3xl text-yellow-primary [text-shadow:_0_0_5px_rgba(212,175,55,0.8)]">✕</span>
+    </button>
+
+    <nav class="flex-1 flex flex-col justify-center items-center gap-8 sm:gap-6 md:gap-8">
+      <a href="#introduction" class="mobile-nav-link text-2xl sm:text-3xl md:text-4xl">HOME</a>
+      <a href="#about" class="mobile-nav-link text-2xl sm:text-3xl md:text-4xl">ABOUT</a>
+      <a href="#skills" class="mobile-nav-link text-2xl sm:text-3xl md:text-4xl">EXPERIENCE</a>
+      <a href="#services" class="mobile-nav-link text-2xl sm:text-3xl md:text-4xl">SERVICES</a>
+      <a href="#projects" class="mobile-nav-link text-2xl sm:text-3xl md:text-4xl">PROJECTS</a>
+    </nav>
+
+    <a href="#contact" class="mobile-contact-btn text-xl sm:text-2xl md:text-3xl mt-auto mb-6 sm:mb-8 py-4 px-8 bg-yellow-primary text-black-primary font-bold uppercase tracking-wider rounded-lg text-center shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:bg-yellow-secondary transition-colors duration-200">CONTACT</a>
+
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- MENÚ DESKTOP - SOLO XL/2XL                                                   -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<nav id="main-navigation"
+      class="hidden xl:flex fixed z-20 right-0 top-0 w-[50%] 2xl:h-18 h-16 bg-gray-secondary items-center justify-center px-5 transition-all duration-200"
+      aria-label="Menú principal"
+>
+  
+  <span id="nav-name" class="hidden opacity-0">
+    <span id="typewriter-text"></span>
+    <span class="typewriter-cursor">|</span>
+  </span>
+
+  <menu id="nav-links" class="flex items-center justify-center gap-8 2xl:gap-15 m-0 p-0 not-italic">
+      <li class="list-none"><a href="#introduction" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">HOME</a></li>
+      <li class="list-none"><a href="#about" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">ABOUT</a></li>
+      <li class="list-none"><a href="#skills" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">EXPERIENCE</a></li>
+      <li class="list-none"><a href="#services" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">SERVICES</a></li>
+      <li class="list-none"><a href="#projects" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">PROJECTS</a></li>
+      <li class="list-none"><a href="#contact" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">CONTACT</a></li>
+    </menu>
+
+  <figure id="nav-profile" class="hidden opacity-0">
+    <img src={ImagesNavegation.src} alt="Alejandro Aguilon" class="w-full h-full object-cover" />
+    <figcaption class="sr-only">Foto de perfil</figcaption>
+  </figure>
+
+</nav>
+
+<style is:global>
+  /* ═══════════════════════════════════════════════════════════════════════════ */
+  /* ESTILOS SCROLL - DESKTOP (SOLO XL/2XL)                                        */
+  /* ═══════════════════════════════════════════════════════════════════════════ */
+  
+  .nav-scrolled {
+    width: 100% !important;
+    left: 0 !important;
+    right: auto !important;
+    height: 80px !important;
+    background: rgba(0, 0, 0, 0.92) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    justify-content: space-between !important;
+    padding: 0 30px !important;
+  }
+  
+  .nav-scrolled .visible {
+    display: block !important;
+    opacity: 1 !important;
+  }
+  
+  .nav-scrolled #nav-name {
+    width: 350px;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-yellow-primary, #D4AF37);
+    letter-spacing: 0.01em;
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.6), 0 0 10px rgba(212, 175, 55, 0.4);
+    overflow: visible;
+  }
+  
+  .typewriter-cursor {
+    display: inline-block;
+    animation: blink 1s step-end infinite;
+    color: var(--color-yellow-primary, #D4AF37);
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.8), 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+  
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  
+  .nav-scrolled #nav-links {
+    gap: 2.5rem;
+  }
+  
+  .nav-scrolled #nav-links a {
+    color: var(--color-white-primary, #FFFFFF) !important;
+    text-shadow: none !important;
+    font-size: 0.95rem;
+  }
+  
+  .nav-scrolled #nav-links a:hover {
+    color: var(--color-yellow-primary, #D4AF37) !important;
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.6), 0 0 10px rgba(212, 175, 55, 0.4) !important;
+  }
+  
+  .nav-scrolled #nav-profile {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 9999px;
+    border: 2px solid var(--color-yellow-primary, #D4AF37);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.5), 0 0 15px rgba(212, 175, 55, 0.3);
+    overflow: hidden;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════ */
+  /* ESTILOS MOBILE/TABLET/IPAD - TODO MENOS XL/2XL                                */
+  /* ═══════════════════════════════════════════════════════════════════════════ */
+  
+  .mobile-nav-link {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-white-primary, #FFFFFF);
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s ease;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.4);
+  }
+  
+  .mobile-nav-link:active {
+    color: var(--color-yellow-primary, #D4AF37);
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.6), 0 0 10px rgba(212, 175, 55, 0.4);
+  }
+  
+  .mobile-contact-btn:active {
+    background-color: var(--color-yellow-secondary, #C9A227);
+  }
+  
+  #mobile-menu {
+    transform: translateX(5%);
+    transition: opacity 0.25s ease-out, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  #mobile-menu.menu-open {
+    opacity: 1 !important;
+    transform: translateX(0);
+    pointer-events: auto !important;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════ */
+  /* LINK ACTIVO - NEÓN AMARILLO (SOLO EN MODO SCROLL)                             */
+  /* ═══════════════════════════════════════════════════════════════════════════ */
+  .nav-scrolled #nav-links a.nav-active {
+    color: var(--color-yellow-primary, #D4AF37) !important;
+    text-shadow: 
+      0 0 5px rgba(212, 175, 55, 0.8),
+      0 0 10px rgba(212, 175, 55, 0.5),
+      0 0 15px rgba(212, 175, 55, 0.3) !important;
+  }
+</style>

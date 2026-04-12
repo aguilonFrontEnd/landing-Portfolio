@@ -1,0 +1,94 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CARD TECNOLOGÍAS - CARRUSEL DE ICONOS
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar todas las tecnologías que domina el developer en un
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+import { Image } from "astro:assets";
+
+// Importación de todos los iconos de tecnologías
+import iconANACONDA from "../../assets/Icon/iconANACONDA.png";
+import iconASTRO from "../../assets/Icon/iconASTRO.png";
+import iconBOOTSTRAP from "../../assets/Icon/iconBOOTSTRAP.png";
+import iconCANVA from "../../assets/Icon/iconCANVA.png";
+import iconCSS from "../../assets/Icon/iconCSS.png";
+import iconFIGMA from "../../assets/Icon/iconFIGMA.png";
+import iconFLUTTER from "../../assets/Icon/iconFLUTTER.png";
+import iconHTML from "../../assets/Icon/iconHTML.png";
+import iconJS from "../../assets/Icon/iconJS.png";
+import iconLARAVEL from "../../assets/Icon/iconLARAVEL.png";
+import iconMARIADB from "../../assets/Icon/iconMARIADB.png";
+import iconMYSQL from "../../assets/Icon/iconMYSQL.png";
+import iconPHP from "../../assets/Icon/iconPHP.png";
+import iconPOWERBI from "../../assets/Icon/iconPOWERBI.png";
+import iconPYTHON from "../../assets/Icon/iconPYTHON.png";
+import iconSASS from "../../assets/Icon/iconSASS.png";
+import iconSPYDER from "../../assets/Icon/iconSPYDER.png";
+import iconTAILWIND from "../../assets/Icon/iconTAILWIND.png";
+import iconVUE from "../../assets/Icon/iconVUE.png";
+import iconWORDPRESS from "../../assets/Icon/iconWORDPRESS.png";
+
+/**
+ * Array de tecnologías para facilitar el mantenimiento.
+ * Cada objeto contiene:
+ * - name: Nombre de la tecnología (para alt y title)
+ * - icon: Ruta del icono importado
+ * - url: Link a la documentación oficial
+ */
+const technologies = [
+  { name: "Anaconda", icon: iconANACONDA, url: "https://www.anaconda.com/" },
+  { name: "Astro", icon: iconASTRO, url: "https://astro.build/" },
+  { name: "Bootstrap", icon: iconBOOTSTRAP, url: "https://getbootstrap.com/" },
+  { name: "Canva", icon: iconCANVA, url: "https://www.canva.com/" },
+  { name: "CSS", icon: iconCSS, url: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+  { name: "Figma", icon: iconFIGMA, url: "https://www.figma.com/" },
+  { name: "Flutter", icon: iconFLUTTER, url: "https://flutter.dev/" },
+  { name: "HTML", icon: iconHTML, url: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+  { name: "JavaScript", icon: iconJS, url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+  { name: "Laravel", icon: iconLARAVEL, url: "https://laravel.com/docs" },
+  { name: "MariaDB", icon: iconMARIADB, url: "https://mariadb.org/documentation/" },
+  { name: "MySQL", icon: iconMYSQL, url: "https://dev.mysql.com/doc/" },
+  { name: "PHP", icon: iconPHP, url: "https://www.php.net/docs.php" },
+  { name: "Power BI", icon: iconPOWERBI, url: "https://learn.microsoft.com/power-bi/" },
+  { name: "Python", icon: iconPYTHON, url: "https://docs.python.org/3/" },
+  { name: "SASS", icon: iconSASS, url: "https://sass-lang.com/documentation/" },
+  { name: "Spyder", icon: iconSPYDER, url: "https://docs.spyder-ide.org/" },
+  { name: "Tailwind", icon: iconTAILWIND, url: "https://tailwindcss.com/docs" },
+  { name: "Vue", icon: iconVUE, url: "https://vuejs.org/guide/introduction.html" },
+  { name: "WordPress", icon: iconWORDPRESS, url: "https://wordpress.org/documentation/" },
+];
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- CARRUSEL DE TECNOLOGÍAS - El arsenal del developer                            -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section class="py-8 px-5 mb-4 overflow-hidden">
+  
+  <!-- FIGURE: Contenedor del carrusel que será manipulado por JavaScript -->
+  <figure 
+    id="carousel-track"
+    class="flex gap-5 p-5 xl:gap-14"
+    style="will-change: transform;"
+  >
+    {technologies.map((tech) => (
+      <a 
+        href={tech.url} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="shrink-0 transition-transform hover:scale-110"
+        title={`Visitar documentación de ${tech.name}`}
+      >
+        <Image 
+          src={tech.icon} 
+          alt={`Logo de ${tech.name}`} 
+          class="w-14 h-14 xl:w-15 xl:h-15 object-contain" 
+        />
+      </a>
+    ))}
+    <figcaption class="sr-only">Carrusel de tecnologías dominadas por el developer</figcaption>
+  </figure>
+
+</section>

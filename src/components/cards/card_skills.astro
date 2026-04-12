@@ -1,0 +1,54 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CARD SKILLS - HABILIDADES TÉCNICAS Y BLANDAS
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar en chips visuales todas las habilidades del developer.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/**
+ * DATOS DE HABILIDADES
+ * Array simple con los nombres de cada habilidad técnica o blanda.
+ */
+const skillsData = [
+  "UI/UX",
+  "Power BI",
+  "Data Cleaning",
+  "Construction Systems",
+  "Teamwork",
+  "Custom Development",
+  "System Requirements",
+  "UML",
+  "Social Skills",
+  "Machine Learning",
+  "Problem Solving",
+  "Critical Thinking"
+];
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- HABILIDADES - Lo que el developer puede hacer                                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section>
+  
+  {/* HEADER: Título de la sección */}
+  <header>
+    <h4 class="text-black-primary font-bold text-sm sm:text-base mb-4 flex items-center gap-2">
+      <i class="fa-solid fa-code text-yellow-primary text-xs" aria-hidden="true"></i>
+      WHAT AM I ABLE TO DO?
+    </h4>
+  </header>
+
+  {/* MENU: Grid de chips de habilidades */}
+  <menu class="flex flex-wrap gap-2 not-italic">
+    {skillsData.map((skill) => (
+      <li class="list-none">
+        <span class="px-3 py-1.5 text-xs sm:text-sm text-black-primary rounded-full hover:bg-yellow-primary hover:text-white-primary transition-all duration-300 cursor-default">
+          {skill}
+        </span>
+      </li>
+    ))}
+  </menu>
+  
+</section>

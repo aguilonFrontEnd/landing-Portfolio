@@ -1,0 +1,179 @@
+<!-- 
+  ═══════════════════════════════════════════════════════════════════════════
+  FOOTER - Pie de pagina del portafolio
+  ═══════════════════════════════════════════════════════════════════════════
+   Propósito: Cerrar el portafolio con información clave, navegación,
+  ═══════════════════════════════════════════════════════════════════════════
+-->
+<footer class="relative w-full bg-black-primary py-10 sm:py-12 px-6 overflow-hidden">
+  
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- EFECTOS DECORATIVOS DE FONDO (GLOWS)                                        -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <span class="absolute top-0 right-0 w-64 h-64 bg-yellow-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" aria-hidden="true"></span>
+  <span class="absolute bottom-0 left-0 w-64 h-64 bg-yellow-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" aria-hidden="true"></span>
+
+  {/* 
+    ═══════════════════════════════════════════════════════════════════════════
+    DESTELLOS ELEGANTES - EQUILIBRIO PERFECTO
+    Pequeños puntos de luz que aparecen y desaparecen sutilmente
+    ═══════════════════════════════════════════════════════════════════════════
+  */}
+  {/* Destello 1 - Superior izquierdo */}
+  <span class="absolute top-8 left-8 w-2 h-2 bg-yellow-primary rounded-full opacity-0 animate-flash-1 shadow-lg shadow-yellow-primary/50" aria-hidden="true"></span>
+  <span class="absolute top-12 left-14 w-1.5 h-1.5 bg-yellow-primary/70 rounded-full opacity-0 animate-flash-2" aria-hidden="true"></span>
+  
+  {/* Destello 2 - Superior derecho */}
+  <span class="absolute top-16 right-16 w-2.5 h-2.5 bg-yellow-primary/50 rounded-full opacity-0 animate-flash-3 shadow-lg shadow-yellow-primary/30" aria-hidden="true"></span>
+  <span class="absolute top-24 right-24 w-1.5 h-1.5 bg-yellow-primary/60 rounded-full opacity-0 animate-flash-1" aria-hidden="true"></span>
+  
+  {/* Destello 3 - Medio izquierdo */}
+  <span class="absolute bottom-32 left-16 w-2 h-2 bg-yellow-primary/40 rounded-full opacity-0 animate-flash-4 shadow-lg shadow-yellow-primary/20" aria-hidden="true"></span>
+  
+  {/* Destello 4 - Inferior derecho */}
+  <span class="absolute bottom-16 right-12 w-2 h-2 bg-yellow-primary/60 rounded-full opacity-0 animate-flash-2 shadow-md shadow-yellow-primary/40" aria-hidden="true"></span>
+  <span class="absolute bottom-24 right-20 w-1.5 h-1.5 bg-yellow-primary/50 rounded-full opacity-0 animate-flash-3" aria-hidden="true"></span>
+  
+  {/* Destello 5 - Centro superior */}
+  <span class="absolute top-28 left-1/2 w-1.5 h-1.5 bg-yellow-primary/30 rounded-full opacity-0 animate-flash-5" aria-hidden="true"></span>
+  
+  {/* Destello 6 - Esquina inferior izquierda */}
+  <span class="absolute bottom-8 left-1/3 w-2 h-2 bg-yellow-primary/70 rounded-full opacity-0 animate-flash-1 shadow-md shadow-yellow-primary/50" aria-hidden="true"></span>
+
+  {/* Destello 7 - Centro derecha */}
+  <span class="absolute top-1/2 right-8 w-1.5 h-1.5 bg-yellow-primary/40 rounded-full opacity-0 animate-flash-4" aria-hidden="true"></span>
+
+  {/* ────────────────────────────────────────────────────────────────────────── */}
+  {/* SECTION: Contenedor principal del contenido del footer                      */}
+  {/* ────────────────────────────────────────────────────────────────────────── */}
+  <section class="relative max-w-3xl mx-auto flex flex-col items-center text-center gap-6">
+    
+    {/* HEADER: Nombre completo y rol */}
+    <header class="space-y-1">
+      <span class="text-yellow-primary text-[10px] sm:text-xs tracking-[0.3em] uppercase">Software Developer</span>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold text-white-primary tracking-tight">
+        Alejandro Aguilon Buitrago
+      </h2>
+    </header>
+
+    {/* FIGURE: Frase inspiradora con autor */}
+    <figure class="w-full sm:max-w-3xl sm:mx-auto">
+      <blockquote class="text-white-primary/80 text-sm sm:text-lg lg:text-xl font-light italic text-center">
+        <span class="sm:whitespace-nowrap">
+          <span class="inline">"I knew that if I failed I wouldn't regret that,</span>
+          <span class="block sm:hidden"></span>
+          <span class="hidden sm:inline"> </span>
+          <span class="text-yellow-primary font-normal not-italic">but I knew the one thing I might regret is not trying."</span>
+        </span>
+      </blockquote>
+      <figcaption class="mt-2 text-white-primary/40 text-xs tracking-wider text-center">
+        — Jeffrey Bezos
+      </figcaption>
+    </figure>
+
+  <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs sm:text-sm uppercase tracking-widest" aria-label="Navegación principal">
+    <a href="#introduction" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300">Inicio</a>
+    <a href="#about" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300">About</a>
+    <a href="#services" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300">Services</a>
+    <a href="#skills" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300">Experience</a>
+    <a href="#contact" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300">Contact</a>
+  </nav>
+
+    {/* NAV: Redes sociales */}
+    <nav class="flex gap-5 text-xl" aria-label="Redes sociales">
+      <a href="#" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300 hover:-translate-y-0.5" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        <span class="sr-only">WhatsApp</span>
+      </a>
+      <a href="#" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300 hover:-translate-y-0.5" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+        <span class="sr-only">LinkedIn</span>
+      </a>
+      <a href="#" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300 hover:-translate-y-0.5" aria-label="Email">
+        <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+        <span class="sr-only">Email</span>
+      </a>
+      <a href="#" class="text-white-primary/60 hover:text-yellow-primary transition-all duration-300 hover:-translate-y-0.5" aria-label="GitHub">
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+        <span class="sr-only">GitHub</span>
+      </a>
+    </nav>
+
+    {/* Línea decorativa */}
+    <span class="w-16 h-0.5 bg-yellow-primary" aria-hidden="true"></span>
+
+    {/* Copyright */}
+    <small class="text-white-primary/30 text-[10px] sm:text-xs tracking-widest">
+      © 2026 ALEJANDRO AGUILON BUITRAGO · ALL RIGHTS RESERVED
+    </small>
+
+  </section>
+
+</footer>
+
+<!-- 
+  ═══════════════════════════════════════════════════════════════════════════
+  ANIMACIONES DE DESTELLOS - EQUILIBRIO PERFECTO
+  ═══════════════════════════════════════════════════════════════════════════
+-->
+<style is:global>
+  /* Destello 1 - Brillo notable pero elegante */
+  @keyframes flash-1 {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    3% { opacity: 0.9; transform: scale(1.8); }
+    8% { opacity: 0.3; transform: scale(1.2); }
+    12% { opacity: 0; transform: scale(0.8); }
+  }
+  .animate-flash-1 {
+    animation: flash-1 10s ease-in-out infinite;
+    animation-delay: 0s;
+  }
+
+  /* Destello 2 - Aparición más pausada */
+  @keyframes flash-2 {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    5% { opacity: 0.8; transform: scale(1.6); }
+    12% { opacity: 0.2; transform: scale(1.1); }
+    18% { opacity: 0; transform: scale(0.8); }
+  }
+  .animate-flash-2 {
+    animation: flash-2 14s ease-in-out infinite;
+    animation-delay: 4s;
+  }
+
+  /* Destello 3 - Sutil pero visible */
+  @keyframes flash-3 {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    4% { opacity: 0.7; transform: scale(1.5); }
+    10% { opacity: 0.2; transform: scale(1.1); }
+    15% { opacity: 0; transform: scale(1); }
+  }
+  .animate-flash-3 {
+    animation: flash-3 12s ease-in-out infinite;
+    animation-delay: 8s;
+  }
+
+  /* Destello 4 - Destello suave */
+  @keyframes flash-4 {
+    0%, 100% { opacity: 0; transform: scale(0.9); }
+    6% { opacity: 0.6; transform: scale(1.7); }
+    14% { opacity: 0.15; transform: scale(1.2); }
+    20% { opacity: 0; transform: scale(0.9); }
+  }
+  .animate-flash-4 {
+    animation: flash-4 16s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  /* Destello 5 - El más suave de todos */
+  @keyframes flash-5 {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    8% { opacity: 0.5; transform: scale(1.4); }
+    16% { opacity: 0.1; transform: scale(1.1); }
+    22% { opacity: 0; transform: scale(1); }
+  }
+  .animate-flash-5 {
+    animation: flash-5 18s ease-in-out infinite;
+    animation-delay: 6s;
+  }
+</style>

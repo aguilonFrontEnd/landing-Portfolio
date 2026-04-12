@@ -1,0 +1,203 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * SECCIÓN CONTACTO - Donde las ideas se convierten en proyectos | Formulario de contacto
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Formulario de contacto funcional + panel de información personal.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+import CardContact from "../cards/card-contact.astro"; /* Componente con información de contacto, redes sociales, etc. */
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN CONTACTO - Donde las ideas se convierten en proyectos                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="contact" data-target="contact"
+  class="relative h-auto w-full overflow-hidden"
+  aria-labelledby="contact-title"
+>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- EFECTOS DECORATIVOS DE FONDO (GLOWS)                                        -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <span class="absolute -top-40 -right-40 w-80 h-80 bg-yellow-primary/5 rounded-full blur-3xl" aria-hidden="true"></span>
+  <span class="absolute -bottom-40 -left-40 w-80 h-80 bg-yellow-primary/5 rounded-full blur-3xl" aria-hidden="true"></span>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- MAIN: Grid responsive de 2 columnas (formulario + panel info)               -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <main class="grid grid-cols-1 lg:grid-cols-[55%_45%] xl:grid-cols-[50%_50%] 2xl:grid-cols-[45%_55%] lg:min-h-0">
+
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <!-- ARTICLE: Columna izquierda - Formulario de contacto                        -->
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <article class="flex items-start lg:items-center justify-center py-20 xs:py-6 sm:py-12 lg:py-8 xl:py-15 2xl:py-20 lg:pl-8 xl:pl-12 2xl:pl-20">
+      
+      <form 
+        class="w-full max-w-full xs:max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl mx-auto lg:mx-0 flex flex-col gap-2.5 xs:gap-3 sm:gap-6 lg:gap-5 xl:gap-6 2xl:gap-7 px-8 xs:px-6 sm:px-8 lg:px-8 xl:px-10 py-2 xs:py-4 sm:py-10 lg:py-8 xl:py-10"
+        aria-label="Formulario de contacto"
+      >
+
+        <!-- HEADER: Título y descripción del formulario -->
+        <header class="flex flex-col gap-1.5 xs:gap-2 sm:gap-3 lg:gap-3 xl:gap-4">
+          <hgroup>
+            <h2 
+              id="contact-title"
+              class="text-xl xs:text-2xl sm:text-4xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold tracking-wide text-black-primary"
+            >
+              Contact Us
+            </h2>
+            <!-- Línea decorativa amarilla -->
+            <span class="block mt-1.5 sm:mt-3 w-14 xs:w-16 sm:w-24 lg:w-20 xl:w-24 2xl:w-28 h-0.5 bg-yellow-primary rounded-full" aria-hidden="true"></span>
+          </hgroup>
+          
+          <p class="text-gray-quaternary text-xs xs:text-sm sm:text-base lg:text-sm xl:text-base 2xl:text-lg leading-relaxed max-w-md lg:max-w-sm xl:max-w-lg 2xl:max-w-xl">
+            Do you have a project in mind? <strong class="text-yellow-primary font-medium">Let's talk!</strong> Leave me your details and I'll get in touch shortly.
+          </p>
+        </header>
+
+        <!-- FIELDSET: Campo de nombre -->
+        <fieldset class="flex flex-col gap-0.5 xs:gap-1 sm:gap-2 group">
+          <label 
+            for="name"
+            class="text-[9px] xs:text-xs sm:text-sm lg:text-xs xl:text-sm tracking-widest text-black-primary uppercase font-medium"
+          >
+            Name
+          </label>
+          
+          <figure class="relative">
+            <!-- Icono de usuario -->
+            <span class="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 text-gray-tertiary group-focus-within:text-yellow-primary transition-colors duration-300">
+              <svg 
+                class="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 lg:w-4 lg:h-4 xl:w-5 xl:h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="John Doe"
+              autocomplete="name"
+              class="w-full focus:outline-none border border-gray-secondary h-8 xs:h-9 sm:h-12 lg:h-11 xl:h-12 2xl:h-14 pl-7 xs:pl-8 sm:pl-11 lg:pl-10 xl:pl-12 pr-2.5 sm:pr-4 bg-transparent outline-none focus:ring-2 focus:ring-yellow-primary/20 transition-all duration-300 rounded-md text-xs sm:text-base"
+              aria-required="true"
+            />
+          </figure>
+        </fieldset>
+
+        <!-- FIELDSET: Campo de email -->
+        <fieldset class="flex flex-col gap-0.5 xs:gap-1 sm:gap-2 group">
+          <label 
+            for="email"
+            class="text-[9px] xs:text-xs sm:text-sm lg:text-xs xl:text-sm tracking-widest text-black-primary uppercase font-medium"
+          >
+            Email
+          </label>
+          
+          <figure class="relative">
+            <!-- Icono de sobre -->
+            <span class="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 text-gray-tertiary group-focus-within:text-yellow-primary transition-colors duration-300">
+              <svg 
+                class="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 lg:w-4 lg:h-4 xl:w-5 xl:h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="M3 8l9 6 9-6"/>
+              </svg>
+            </span>
+            
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="john@example.com"
+              autocomplete="email"
+              class="w-full focus:outline-none border border-gray-secondary h-8 xs:h-9 sm:h-12 lg:h-11 xl:h-12 2xl:h-14 pl-7 xs:pl-8 sm:pl-11 lg:pl-10 xl:pl-12 pr-2.5 sm:pr-4 bg-transparent outline-none focus:ring-2 focus:ring-yellow-primary/20 transition-all duration-300 rounded-md text-xs sm:text-base"
+              aria-required="true"
+            />
+          </figure>
+        </fieldset>
+
+        <!-- FIELDSET: Campo de mensaje -->
+        <fieldset class="flex flex-col gap-0.5 xs:gap-1 sm:gap-2 group">
+          <label 
+            for="message"
+            class="text-[9px] xs:text-xs sm:text-sm lg:text-xs xl:text-sm tracking-widest text-black-primary uppercase font-medium"
+          >
+            Message
+          </label>
+          
+          <figure class="relative">
+            <!-- Icono de mensaje -->
+            <span class="absolute left-2.5 sm:left-3 top-2.5 text-gray-tertiary group-focus-within:text-yellow-primary transition-colors duration-300">
+              <svg 
+                class="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 lg:w-4 lg:h-4 xl:w-5 xl:h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </span>
+            
+            <textarea
+              id="message"
+              name="message"
+              rows="2"
+              placeholder="Tell me about your project..."
+              class="w-full border border-gray-secondary h-25 xs:h-16 sm:h-28 lg:h-24 xl:h-28 2xl:h-32 pl-7 xs:pl-8 sm:pl-11 lg:pl-10 xl:pl-12 pr-2.5 sm:pr-4 py-1.5 sm:py-3 bg-transparent outline-none resize-none focus:ring-2 focus:ring-yellow-primary/20 transition-all duration-300 rounded-md text-xs sm:text-base"
+              aria-required="true"
+            ></textarea>
+          </figure>
+        </fieldset>
+
+        <!-- FOOTER: Botón de envío -->
+        <footer class="mt-0.5 xs:mt-1 sm:mt-4 lg:mt-3 xl:mt-4">
+          <button
+            type="submit"
+            class="relative w-full bg-black-primary text-white-primary py-2 xs:py-2.5 sm:py-4 lg:py-3.5 xl:py-4 2xl:py-5 tracking-[0.15em] xs:tracking-[0.2em] sm:tracking-[0.4em] text-[10px] xs:text-xs sm:text-sm lg:text-xs xl:text-sm 2xl:text-base font-semibold hover:bg-transparent hover:text-black-primary hover:border-black border border-transparent transition-all cursor-pointer duration-500 overflow-hidden group rounded-md"
+          >
+            <span class="relative z-10">SEND</span>
+            <!-- Efecto de brillo en hover -->
+            <span class="absolute inset-0 bg-linear-to-r from-transparent via-white-primary/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" aria-hidden="true"></span>
+          </button>
+        </footer>
+        
+      </form>
+
+    </article>
+
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <!-- ASIDE: Columna derecha - Panel de información de contacto                  -->
+    <!-- ──────────────────────────────────────────────────────────────────────── -->
+    <aside class="hidden lg:flex items-center justify-center lg:justify-start xl:justify-center 2xl:justify-start px-6 lg:px-8 xl:px-10 2xl:px-16 py-8 lg:py-10 xl:py-12 relative z-10 overflow-hidden">
+      
+      <!-- Decoración de fondo (círculos) -->
+      <span class="absolute inset-0 opacity-5" aria-hidden="true">
+        <span class="absolute top-10 right-10 w-40 h-40 border-2 border-black-primary rounded-full"></span>
+        <span class="absolute bottom-10 left-10 w-60 h-60 border border-black-primary rounded-full"></span>
+        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-black-primary/30 rounded-full"></span>
+      </span>
+
+      <!-- CardContact: Componente con información de contacto y redes sociales -->
+      <CardContact />
+
+    </aside>
+
+  </main>
+
+</section>

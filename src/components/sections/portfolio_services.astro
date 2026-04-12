@@ -1,0 +1,104 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * SECCIÓN SERVICIOS - ALEJANDRO AGUILON
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar los servicios profesionales que ofrece el desarrollador.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+import CardServices from '../cards/card_services.astro'; 
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN SERVICES - Soluciones que transforman ideas en experiencias           -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="services" data-target="services"
+  class="relative w-full bg-white-primary py-16 sm:py-20 lg:py-24 2xl:py-28 px-4 sm:px-6 lg:px-8 2xl:px-12 overflow-hidden font-inter"
+  aria-labelledby="services-title"
+>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- EFECTOS DECORATIVOS DE FONDO                                                -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  
+  <!-- Glow superior derecho (animado) -->
+  <span 
+    class="absolute -top-24 -right-24 w-72 sm:w-80 lg:w-96 2xl:w-125 h-72 sm:h-80 lg:h-96 2xl:h-125 bg-yellow-primary/5 rounded-full blur-3xl animate-pulse-slow"
+    aria-hidden="true"
+  ></span>
+  
+  <!-- Puntos decorativos flotantes (esquina superior derecha) -->
+  <span class="absolute top-20 right-10 opacity-20" aria-hidden="true">
+    <span class="grid grid-cols-4 gap-3">
+      {Array.from({ length: 8 }).map(() => (
+        <span class="w-1.5 h-1.5 bg-yellow-primary rounded-full"></span>
+      ))}
+    </span>
+  </span>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- HEADER: Título, línea decorativa y descripción                               -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <header class="relative max-w-7xl 2xl:max-w-[95%] 3xl:max-w-[90%] mx-auto mb-12 sm:mb-14 lg:mb-16 2xl:mb-20">
+    
+    <!-- Contenedor del título -->
+    <div class="relative">
+
+      <!-- Título principal -->
+      <h2 
+        id="services-title"
+        class="relative text-3xl sm:text-4xl lg:text-3xl 2xl:text-6xl font-bold leading-tight"
+      >
+        <span class="relative text-4xl sm:text-5xl lg:text-3xl 2xl:text-5xl font-bold text-yellow-primary">
+          SERVICES
+        </span>
+      </h2>
+
+    </div>
+
+    <!-- Línea decorativa principal (ancho completo) -->
+    <span 
+      class="block mt-4 w-20 sm:w-full 2xl:w-full h-0.75 lg:h-1 bg-black-primary rounded-full"
+      aria-hidden="true"
+    ></span>
+
+    <!-- Descripción de la sección -->
+    <p class="mt-5 sm:mt-6 text-gray-quaternary text-sm sm:text-base lg:text-lg 2xl:text-xl max-w-2xl leading-relaxed">
+      Custom solutions designed to turn your ideas into 
+      <strong class="text-yellow-primary font-medium">outstanding digital experiences</strong>.
+    </p>
+
+  </header>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- CARD SERVICES: Componente externo con el grid de servicios                   -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <CardServices />
+  
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ESTILOS ADICIONALES PARA ANIMACIONES                                          -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<style is:global>
+  /* Animación de pulso lento para los glows decorativos */
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  /* Efecto de brillo elegante en hover para las cards de servicio */
+  .service-card:hover {
+    box-shadow: 0 20px 40px -15px rgba(251, 191, 36, 0.2);
+  }
+</style>

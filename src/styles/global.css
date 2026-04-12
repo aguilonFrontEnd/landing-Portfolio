@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+
+  /* =========================
+     COLORES
+  ========================= */
+
+  --color-yellow-primary: #D4AF37;
+  --color-yellow-secondary: #C9A227;
+  --color-yellow-tertiary: #E6C45A;
+
+  --color-black-primary: #000000;
+  --color-black-secondary: #1A1A1A;
+  --color-black-tertiary: #2A2A2A;
+
+  --color-white-primary: #FFFFFF;
+  --color-white-secondary: #F5F5F5;
+  --color-white-tertiary: #E8E8E8;
+
+  --color-gray-primary: #CFCFCF;
+  --color-gray-secondary: #B0B0B0;
+  --color-gray-tertiary: #8A8A8A;
+  --color-gray-quaternary: #5A5A5A;
+  --color-gray-quinary: #2F2F2F;
+
+
+  /* =========================
+     TIPOGRAFÍAS
+  ========================= */
+
+  --font-inter: "Inter", sans-serif;
+  --font-tight: "Inter Tight", sans-serif;
+  --font-ibm: "IBM Plex Sans Condensed", sans-serif;
+  --font-roboto-condensed: "Roboto Condensed", sans-serif;
+
+
+  /* =========================
+     TAMAÑOS DE TEXTO
+  ========================= */
+
+  --text-hero: 56px;
+  --text-title: 40px;
+  --text-subtitle: 28px;
+  --text-body: 16px;
+  --text-small: 14px;
+
+
+  /* =========================
+     PESOS DE FUENTE
+  ========================= */
+
+  --font-weight-thin: 200;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+}

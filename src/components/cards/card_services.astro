@@ -1,0 +1,113 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * CARD SERVICES - GRID DE SERVICIOS PROFESIONALES
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Mostrar los servicios que ofrece el developer en un grid elegante.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+/**
+ * DATOS DE SERVICIOS
+ * Cada objeto contiene:
+ * - id: Identificador único
+ * - title: Nombre del servicio
+ * - description: Descripción corta del servicio
+ * - rotation: Clase de rotación en hover para el icono
+ */
+const servicesData = [
+  {
+    id: 1,
+    title: "Responsive Design",
+    description: "Interfaces that adapt seamlessly across all devices for a consistent user experience.",
+    rotation: "group-hover:rotate-3"
+  },
+  {
+    id: 2,
+    title: "Web Design",
+    description: "Modern websites focused on performance, usability, and visual impact.",
+    rotation: "group-hover:-rotate-3"
+  },
+  {
+    id: 3,
+    title: "UI/UX Experience",
+    description: "Intuitive interfaces that connect users with products in meaningful ways.",
+    rotation: "group-hover:rotate-6"
+  },
+  {
+    id: 4,
+    title: "UML Diagrams",
+    description: "Clear system modeling to design scalable and structured architectures.",
+    rotation: "group-hover:-rotate-6"
+  },
+  {
+    id: 5,
+    title: "Power BI",
+    description: "Data visualization that transforms insights into strategic decisions.",
+    rotation: "group-hover:rotate-3"
+  },
+  {
+    id: 6,
+    title: "Software Consulting",
+    description: "Technical guidance to improve systems, architecture, and development processes.",
+    rotation: "group-hover:-rotate-3"
+  }
+];
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- GRID DE SERVICIOS - Soluciones que transforman ideas en experiencias          -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section 
+  class="relative max-w-7xl 2xl:max-w-[95%] 3xl:max-w-[90%] mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 2xl:gap-8"
+  role="list"
+  aria-label="Lista de servicios profesionales"
+>
+  {servicesData.map((service, index) => (
+    <article 
+      class="service-card group bg-white-primary border border-gray-primary/30 rounded-xl lg:rounded-2xl p-6 sm:p-7 lg:p-8 2xl:p-9 flex flex-col gap-4 sm:gap-5 hover:border-yellow-primary hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden"
+      role="listitem"
+    >
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      {/* EFECTOS DECORATIVOS DE FONDO EN HOVER                                   */}
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      <span class="absolute inset-0 bg-linear-to-br from-yellow-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></span>
+      <span class="absolute inset-0 bg-linear-to-r from-transparent via-yellow-primary/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" aria-hidden="true"></span>
+      
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      {/* FIGURE: Icono del servicio con rotación en hover                         */}
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      <figure class={`relative w-12 h-12 sm:w-14 sm:h-14 2xl:w-16 2xl:h-16 flex items-center justify-center bg-yellow-primary/10 rounded-lg lg:rounded-xl group-hover:bg-yellow-primary group-hover:scale-110 ${service.rotation} transition-all duration-500`}>
+        <svg class="w-6 h-6 sm:w-7 sm:h-7 2xl:w-8 2xl:h-8 text-yellow-primary group-hover:text-white-primary transition-colors duration-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+          {/* Icono: Responsive Design */}
+          {index === 0 && <Fragment><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M16 14h.01"/></Fragment>}
+          {/* Icono: Web Design */}
+          {index === 1 && <Fragment><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18"/><path d="M12 3a15 15 0 0 0 0 18"/></Fragment>}
+          {/* Icono: UI/UX Experience */}
+          {index === 2 && <Fragment><path d="M12 2l4 4-4 4-4-4 4-4z"/><path d="M2 12l4-4 4 4-4 4-4-4z"/><path d="M12 22l-4-4 4-4 4 4-4 4z"/><path d="M22 12l-4 4-4-4 4-4 4 4z"/></Fragment>}
+          {/* Icono: UML Diagrams */}
+          {index === 3 && <Fragment><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M6 8l6 8 6-8"/></Fragment>}
+          {/* Icono: Power BI */}
+          {index === 4 && <Fragment><rect x="4" y="10" width="3" height="8"/><rect x="10" y="6" width="3" height="12"/><rect x="16" y="3" width="3" height="15"/></Fragment>}
+          {/* Icono: Software Consulting */}
+          {index === 5 && <Fragment><path d="M12 8v8M8 12h8"/><circle cx="12" cy="12" r="9"/><path d="M14 14l2 2M10 10l-2-2"/></Fragment>}
+        </svg>
+        <figcaption class="sr-only">{service.title} icon</figcaption>
+      </figure>
+      
+      {/* HEADER: Título del servicio */}
+      <header>
+        <h3 class="relative text-base sm:text-lg lg:text-xl 2xl:text-2xl font-bold text-black-primary group-hover:text-yellow-primary transition-colors duration-300">{service.title}</h3>
+      </header>
+      
+      {/* Descripción del servicio */}
+      <p class="relative text-gray-quaternary text-xs sm:text-sm lg:text-base 2xl:text-lg leading-relaxed">{service.description}</p>
+      
+      {/* FOOTER: Indicador decorativo que se expande en hover */}
+      <footer class="relative mt-auto pt-2">
+        <span class="inline-block w-8 h-0.5 bg-yellow-primary/30 group-hover:w-16 group-hover:bg-yellow-primary transition-all duration-500 rounded-full" aria-hidden="true"></span>
+      </footer>
+      
+    </article>
+  ))}
+</section>

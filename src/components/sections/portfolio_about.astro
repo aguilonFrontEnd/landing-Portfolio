@@ -1,0 +1,132 @@
+---
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * SECCIÓN ABOUT - Seccion Descriptiva del desarrollador
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Propósito: Presentar el perfil del desarrollador, su filosofía y permitir descargar el CV.
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+import { Image } from "astro:assets";
+import logo from "../../assets/Img/Quien soy/img_aboutme.jpg";
+---
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN ABOUT - Donde se presenta al desarrolladorn                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section data-target="about" id="about" class="z-10 relative w-full bg-linear-to-br from-black via-black-primary to-gray-900 overflow-hidden">
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- EFECTOS DECORATIVOS DE FONDO (GLOWS)                                       -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <span class="absolute top-1/3 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-yellow-primary/10 blur-[120px] rounded-full" aria-hidden="true"></span>
+  <span class="absolute bottom-1/3 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-yellow-primary/5 blur-[140px] rounded-full" aria-hidden="true"></span>
+  <span class="absolute bottom-0 left-0 w-full h-32 sm:h-40 bg-linear-to-t from-yellow-primary/20 to-transparent" aria-hidden="true"></span>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- ARTICLE: Panel blanco que contiene todo el contenido                        -->
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <article class="relative bg-white-tertiary w-full 2xl:w-400 py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
+    
+    <!-- MAIN: Grid de 2 columnas (imagen + texto) -->
+    <main class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      
+      <!-- ────────────────────────────────────────────────────────────────────── -->
+      <!-- FIGURE: Columna izquierda - Imagen de perfil                            -->
+      <!-- ────────────────────────────────────────────────────────────────────── -->
+      <figure class="relative flex justify-center lg:justify-start order-1">
+        
+        <!-- Fondo negro decorativo detrás de la imagen (solo visible en XL+) -->
+        <span class="hidden xl:block absolute -top-10 2xl:-top-10 2xl:-left-10 w-full max-w-lg h-full bg-black-primary" aria-hidden="true"></span>
+        
+        <!-- Imagen de Alejandro -->
+        <Image
+          src={logo}
+          alt="Alejandro Aguilon - Software Developer"
+          class="relative w-full max-w-xs xl:ml-15 2xl:ml-5 2xl:mt-12 sm:max-w-sm lg:max-w-md xl:max-w-lg aspect-4/4 object-cover shadow-xl"
+          loading="lazy"
+        />
+        <figcaption class="sr-only">Fotografía profesional de Alejandro Aguilon</figcaption>
+      </figure>
+      
+      <!-- ────────────────────────────────────────────────────────────────────── -->
+      <!-- HEADER: Columna derecha - Texto descriptivo y botón CV                  -->
+      <!-- ────────────────────────────────────────────────────────────────────── -->
+      <header class="flex flex-col gap-5 sm:gap-6 text-center lg:text-left order-2">
+        
+        <!-- Título "Who is" y nombre -->
+        <div>
+          <p class="text-gray-primary font-inter text-sm sm:text-base lg:text-lg xl:text-4xl xl:pl-55">
+            Who is
+          </p>
+          
+          <h2 class="relative inline-block">
+            <span class="relative font-inter z-10 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-black-primary">
+              ALEJANDRO 
+            </span>
+            <!-- Línea amarilla decorativa debajo del nombre -->
+            <span class="absolute left-0 bottom-1 sm:bottom-2 lg:bottom-5 w-full h-2 sm:h-2.5 lg:h-4 bg-yellow-primary z-0" aria-hidden="true"></span>
+          </h2>
+        </div>
+        
+        <!-- Párrafos descriptivos -->
+        <div class="space-y-4 sm:space-y-5">
+          <p class="text-gray-quinary text-sm sm:text-base lg:text-body font-inter leading-relaxed max-w-xl mx-auto lg:mx-0">
+            I am a <strong class="text-yellow-primary font-semibold">Software Developer</strong>
+            and technologist who sees beyond the code. With active listening and
+            effective communication skills, I strengthen teams by resolving conflicts
+            and fostering collaboration.
+          </p>
+          
+          <p class="text-gray-quinary text-sm sm:text-base lg:text-body leading-relaxed max-w-xl mx-auto lg:mx-0 font-inter">
+            With an analytical mindset and a practical approach, I transform
+            complex challenges into functional and scalable digital products.
+            I don't just write code; I design smart solutions that evolve with
+            business needs.
+          </p>
+        </div>
+        
+        <!-- FOOTER: Botón de descarga del CV -->
+        <footer class="pt-4 sm:pt-5">
+          <a
+            href="../../../public/Documentation/CURRICULUM - Alejandro Aguilon Buitrago.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="
+              inline-block
+              bg-yellow-primary
+              text-black-primary
+              font-bold
+              font-inter
+              text-sm sm:text-base
+              px-4 sm:px-8 lg:px-25
+              py-4 sm:py-6
+              rounded-md
+              shadow-md
+              hover:scale-102
+              transition-all
+              duration-300
+              w-full sm:w-auto
+              mx-auto lg:mx-0
+              text-center
+            "
+            download
+          >
+            <!-- Texto para mobile -->
+            <span class="sm:hidden">
+              Descargar CV
+            </span>
+
+            <!-- Texto para desktop -->
+            <span class="hidden sm:inline">
+              Descargar CV - Alejandro Aguilon Buitrago.pdf
+            </span>
+          </a>
+        </footer>
+        
+      </header>
+      
+    </main>
+    
+  </article>
+  
+</section>
