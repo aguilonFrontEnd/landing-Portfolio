@@ -240,7 +240,7 @@ export function initProjectFilters() {
 }
 
 // ============================================================================
-// FORMULARIO DE CONTACTO
+// FORMULARIO DE CONTACTO CON RESEND DIRECTO
 // ============================================================================
 
 let contactFormInitialized = false;
@@ -250,6 +250,9 @@ export function initContactForm() {
   
   const form = document.querySelector('form[aria-label="Formulario de contacto"]');
   if (!form) return;
+  
+  // Inicializar Resend con la API Key
+  const resend = new Resend(import.meta.env.RESEND_API_KEY);
   
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -279,19 +282,28 @@ export function initContactForm() {
     button.disabled = true;
     
     try {
-      const response = await fetch('/api/contact.json', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+      const { data: responseData, error } = await resend.emails.send({
+        from: 'Portfolio Contact <onboarding@resend.dev>',
+        to: ['aguilondevelopsoft@gmail.com'],
+        subject: `Nuevo mensaje de ${data.name} desde el portafolio`,
+        reply_to: data.email,
+        html: `
+          <h2>📬 Nuevo mensaje de contacto</h2>
+          <p><strong>Nombre:</strong> ${data.name}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Mensaje:</strong></p>
+          <p style="background: #f5f5f5; padding: 15px; border-radius: 8px;">${data.message}</p>
+          <hr>
+          <p style="color: #666; font-size: 12px;">Enviado desde el portafolio de Alejandro Aguilon</p>
+        `,
       });
       
-      const result = await response.json();
-      
-      if (result.success) {
+      if (error) {
+        console.error('Resend error:', error);
+        showToast('Error sending message. Please try again.', 'error');
+      } else {
         showToast('Message sent successfully! Thank you for contacting me.', 'success');
         form.reset();
-      } else {
-        showToast(result.error || 'Error sending message. Please try again.', 'error');
       }
     } catch (error) {
       console.error('Contact form error:', error);
