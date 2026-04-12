@@ -108,9 +108,10 @@ import Contact from "../components/form/portfolio_contact.astro"
 
 
     <!-- ==================== JAVASCRIPT ==================== -->
-<script type="module" src="/src/script/index.js"></script>
-
-
+<script type="module">
+    import { initBreakpoint } from '/script/index.js';
+    initBreakpoint();
+</script>
 
 
 </body>
