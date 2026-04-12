@@ -1,8 +1,9 @@
-// index.js
-import { initBreakpoint } from './breakpoint.js';
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initBreakpoint);
-} else {
-  initBreakpoint();
-}
+  // Importar directamente
+  import { initBreakpoint } from '/src/script/index.js';
+  
+  // Ejecutar
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBreakpoint);
+  } else {
+    initBreakpoint();
+  }
