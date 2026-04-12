@@ -10,12 +10,10 @@ import ImagesNavegation from "../assets/Img/Navegacion/Img_perfil.jpg";
 <!-- ===== BOTÓN HAMBURGUESA (MOBILE/TABLET/IPAD - TODO MENOS XL/2XL) ===== -->
 <button 
   id="menu-toggle"
-  class="fixed z-30 top-4 right-4 w-12 h-12 xl:hidden flex items-center justify-center bg-black-primary/80 backdrop-blur-sm rounded-full shadow-lg [box-shadow:_0_0_8px_rgba(212,175,55,0.5)]"
-  aria-label="Abrir menú"
+  class="fixed z-30 top-4 right-4 w-12 h-12 xl:hidden flex items-center justify-center bg-black-primary/80 backdrop-blur-sm rounded-full shadow-lg [box-shadow:0_0_8px_rgba(212,175,55,0.5)]"  aria-label="Abrir menú"
   aria-expanded="false"
 >
-  <span id="menu-icon" class="text-2xl text-yellow-primary [text-shadow:_0_0_5px_rgba(212,175,55,0.8)]">☰</span>
-</button>
+<span class="text-3xl text-yellow-primary [text-shadow:0_0_5px_rgba(212,175,55,0.8)]">✕</span></button>
 
 <!-- ===== MENÚ LATERAL (MOBILE/TABLET/IPAD - TODO MENOS XL/2XL) ===== -->
 <aside 
@@ -30,7 +28,7 @@ import ImagesNavegation from "../assets/Img/Navegacion/Img_perfil.jpg";
       class="self-end w-10 h-10 flex items-center justify-center rounded-full mb-4"
       aria-label="Cerrar menú"
     >
-      <span class="text-3xl text-yellow-primary [text-shadow:_0_0_5px_rgba(212,175,55,0.8)]">✕</span>
+      <span class="text-3xl text-yellow-primary [text-shadow:0_0_5px_rgba(212,175,55,0.8)]">✕</span>
     </button>
 
     <nav class="flex-1 flex flex-col justify-center items-center gap-8 sm:gap-6 md:gap-8">
@@ -59,14 +57,44 @@ import ImagesNavegation from "../assets/Img/Navegacion/Img_perfil.jpg";
     <span class="typewriter-cursor">|</span>
   </span>
 
+  
   <menu id="nav-links" class="flex items-center justify-center gap-8 2xl:gap-15 m-0 p-0 not-italic">
-      <li class="list-none"><a href="#introduction" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">HOME</a></li>
-      <li class="list-none"><a href="#about" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">ABOUT</a></li>
-      <li class="list-none"><a href="#skills" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">EXPERIENCE</a></li>
-      <li class="list-none"><a href="#services" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">SERVICES</a></li>
-      <li class="list-none"><a href="#projects" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">PROJECTS</a></li>
-      <li class="list-none"><a href="#contact" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:_0_0_3px_rgba(255,255,255,0.4),_0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">CONTACT</a></li>
-    </menu>
+    <li class="list-none">
+      <a href="#introduction" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:0_0_3px_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">
+        HOME
+      </a>
+    </li>
+
+    <li class="list-none">
+      <a href="#about" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:0_0_3px_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">
+        ABOUT
+      </a>
+    </li>
+
+    <li class="list-none">
+      <a href="#skills" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:0_0_3px_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">
+        EXPERIENCE
+      </a>
+    </li>
+
+    <li class="list-none">
+      <a href="#services" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:0_0_3px_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">
+        SERVICES
+      </a>
+    </li>
+
+    <li class="list-none">
+      <a href="#projects" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:0_0_3px_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">
+        PROJECTS
+      </a>
+    </li>
+
+    <li class="list-none">
+      <a href="#contact" class="text-sm 2xl:text-md font-bold uppercase tracking-wider text-white no-underline whitespace-nowrap [text-shadow:0_0_3px_rgba(255,255,255,0.4),0_0_6px_rgba(255,255,255,0.2)] transition-all duration-200">
+        CONTACT
+      </a>
+    </li>
+  </menu>
 
   <figure id="nav-profile" class="hidden opacity-0">
     <img src={ImagesNavegation.src} alt="Alejandro Aguilon" class="w-full h-full object-cover" />

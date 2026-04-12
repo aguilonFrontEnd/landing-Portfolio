@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * BREAKPOINT.JS - ORQUESTADOR RESPONSIVE
+ * BREAKPOINT.JS -  Gestion de funciones exportadas de UI y Animaciones
  * ═══════════════════════════════════════════════════════════════════════════
  */
 

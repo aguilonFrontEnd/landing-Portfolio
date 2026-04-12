@@ -1,21 +1,43 @@
 /**
- * ═══════════════════════════════════════════════════════════════════════════
- * ANIMATION.JS - FUNCIONES DE ANIMACIÓN
- * ═══════════════════════════════════════════════════════════════════════════
- * Propósito: Contiene TODAS las animaciones del sitio.
+ * ============================================================================
+ * ANIMATION.JS - FUNCIONES DE ANIMACION
+ * ============================================================================
+ * Proposito: Contiene TODAS las animaciones del sitio web.
+ * 
+ * SECCIONES:
+ * 1. Typewriter Effect        - Efecto de escritura para el nombre
+ * 2. Menu Mobile              - Animacion de apertura/cierre del menu hamburguesa
+ * 3. Carrusel Infinito        - Carrusel de tecnologias que se mueve automaticamente
+ * 4. Animaciones Hero         - Animaciones de entrada para la seccion principal
+ * 5. Animaciones About        - Animaciones de entrada para la seccion "Quien soy"
+ * 6. Animaciones Services     - Animaciones de entrada para la seccion de servicios
+ * 7. Animaciones Projects     - Animaciones de entrada para la seccion de proyectos
+ * 8. Animaciones Contact      - Animaciones de entrada para la seccion de contacto
+ * 9. Efecto Scroll Footer     - Footer aparece/desaparece con el scroll
+ * ============================================================================
  */
 
+// ============================================================================
+// 1. TYPEWRITER EFFECT
+// ============================================================================
+
 /**
- * TYPEWRITER EFFECT - Para el nombre en desktop
- * @param {HTMLElement} textElement - Elemento donde se escribirá
- * @param {string} fullText - Texto completo
- * @param {number} speed - Velocidad en ms
- * @returns {Object} - Funciones start y stop
+ * Crea un efecto de maquina de escribir para un elemento de texto.
+ * Se usa en el menu desktop cuando se activa el modo scroll.
+ * 
+ * @param {HTMLElement} textElement - Elemento DOM donde se escribira el texto
+ * @param {string} fullText - Texto completo que se escribira letra por letra
+ * @param {number} speed - Velocidad en milisegundos por cada letra (default: 60ms)
+ * @returns {Object} - Objeto con metodos start() y stop() para controlar la animacion
  */
 export function createTypewriter(textElement, fullText, speed = 60) {
   let typewriterTimer = null;
   let currentIndex = 0;
   
+  /**
+   * Inicia el efecto typewriter.
+   * Limpia cualquier animacion previa y comienza a escribir desde cero.
+   */
   function start() {
     if (typewriterTimer) clearTimeout(typewriterTimer);
     currentIndex = 0;
@@ -32,6 +54,9 @@ export function createTypewriter(textElement, fullText, speed = 60) {
     type();
   }
   
+  /**
+   * Detiene el efecto typewriter y limpia el texto.
+   */
   function stop() {
     if (typewriterTimer) {
       clearTimeout(typewriterTimer);
@@ -44,41 +69,57 @@ export function createTypewriter(textElement, fullText, speed = 60) {
   return { start, stop };
 }
 
+// ============================================================================
+// 2. ANIMACION DE MENU MOBILE
+// ============================================================================
+
 /**
- * ANIMACIÓN DE MENÚ MOBILE - Apertura y cierre suave
- * @param {HTMLElement} mobileMenu - Elemento del menú
- * @param {boolean} isOpening - true = abrir, false = cerrar
+ * Anima la apertura y cierre del menu mobile/tablet.
+ * Usa transiciones CSS para un efecto suave de slide y fade.
+ * 
+ * @param {HTMLElement} mobileMenu - Elemento DOM del menu mobile
+ * @param {boolean} isOpening - true para abrir el menu, false para cerrarlo
  */
 export function animateMobileMenu(mobileMenu, isOpening) {
   if (isOpening) {
+    // ABRIR MENU: Mostrar con fade in y slide desde la derecha
     mobileMenu.style.display = 'flex';
     requestAnimationFrame(() => {
       mobileMenu.classList.add('menu-open');
       mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
     });
   } else {
+    // CERRAR MENU: Ocultar con fade out y slide hacia la derecha
     mobileMenu.classList.remove('menu-open');
     mobileMenu.classList.add('opacity-0', 'pointer-events-none');
     setTimeout(() => {
       mobileMenu.style.display = 'none';
-    }, 300);
+    }, 300); // Esperar a que termine la transicion CSS (300ms)
   }
 }
 
+// ============================================================================
+// 3. CARRUSEL INFINITO DE TECNOLOGIAS
+// ============================================================================
+
 /**
- * CARRUSEL INFINITO DE TECNOLOGÍAS
- * @returns {Function} - Función de limpieza
+ * Inicializa el carrusel infinito de iconos de tecnologias.
+ * Clona los elementos originales para crear un loop infinito.
+ * Se pausa automaticamente al pasar el mouse por encima.
+ * 
+ * @returns {Function} - Funcion de limpieza para detener la animacion y remover eventos
  */
 export function initInfiniteCarousel() {
   const track = document.getElementById("carousel-track");
   
   if (!track) {
-    console.warn("⚠️ No se encontró el elemento con id='carousel-track'");
+    console.warn("No se encontro el elemento con id='carousel-track'");
     return () => {};
   }
 
+  // Evitar inicializacion multiple
   if (track.hasAttribute('data-carousel-initialized')) {
-    console.log("⏭️ Carrusel ya inicializado");
+    console.log("Carrusel ya inicializado");
     return () => {};
   }
   track.setAttribute('data-carousel-initialized', 'true');
@@ -86,29 +127,37 @@ export function initInfiniteCarousel() {
   const originalItems = Array.from(track.children);
   
   if (originalItems.length === 0) {
-    console.warn("⚠️ No hay elementos dentro del carrusel");
+    console.warn("No hay elementos dentro del carrusel");
     return () => {};
   }
 
-  console.log(`🎠 Carrusel: ${originalItems.length} elementos originales`);
+  console.log(`Carrusel: ${originalItems.length} elementos originales`);
 
+  // Calcular cuantas copias se necesitan para un loop suave
   const singleLoopWidth = originalItems.reduce((total, item) => total + item.getBoundingClientRect().width, 0);
   const viewportWidth = window.innerWidth;
   const neededCopies = Math.ceil((viewportWidth * 2) / singleLoopWidth) + 2;
 
+  // Clonar elementos originales
   const originalItemsClone = originalItems.map(item => item.cloneNode(true));
   track.innerHTML = '';
   
+  // Agregar originales y clones
   originalItemsClone.forEach(item => track.appendChild(item));
   for (let i = 0; i < neededCopies; i++) {
     originalItemsClone.forEach(item => track.appendChild(item.cloneNode(true)));
   }
 
+  // Configuracion de la animacion
   let position = 0;
-  const speed = 0.8;
+  const speed = 0.8; // Pixeles por frame
   let animationId = null;
   let isAnimating = true;
 
+  /**
+   * Funcion de animacion recursiva usando requestAnimationFrame.
+   * Mueve el carrusel horizontalmente y resetea la posicion al llegar al final.
+   */
   function animate() {
     if (!isAnimating) return;
     position -= speed;
@@ -117,6 +166,7 @@ export function initInfiniteCarousel() {
     animationId = requestAnimationFrame(animate);
   }
 
+  /** Pausa la animacion (al hacer hover) */
   function pauseAnimation() {
     isAnimating = false;
     if (animationId) {
@@ -125,6 +175,7 @@ export function initInfiniteCarousel() {
     }
   }
 
+  /** Reanuda la animacion (al quitar el hover) */
   function resumeAnimation() {
     if (!isAnimating) {
       isAnimating = true;
@@ -132,46 +183,42 @@ export function initInfiniteCarousel() {
     }
   }
 
+  // Event listeners para pausar al hacer hover
   track.addEventListener('mouseenter', pauseAnimation);
   track.addEventListener('mouseleave', resumeAnimation);
   animate();
 
+  // Funcion de limpieza para cuando se destruye el componente
   const cleanup = () => {
     pauseAnimation();
     track.removeAttribute('data-carousel-initialized');
     track.removeEventListener('mouseenter', pauseAnimation);
     track.removeEventListener('mouseleave', resumeAnimation);
-    console.log("🧹 Carrusel limpiado");
+    console.log("Carrusel limpiado");
   };
 
-  console.log("✅ Carrusel infinito inicializado");
+  console.log("Carrusel infinito inicializado");
   return cleanup;
 }
 
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * ANIMACIONES DE ENTRADA - SECCIÓN HERO
- * ═══════════════════════════════════════════════════════════════════════════
- */
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * ANIMACIONES DE ENTRADA - SECCIÓN HERO
- * ═══════════════════════════════════════════════════════════════════════════
- */
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * ANIMACIONES DE ENTRADA - SECCIÓN HERO
- * ═══════════════════════════════════════════════════════════════════════════
- */
+// ============================================================================
+// 4. ANIMACIONES DE ENTRADA - SECCION HERO (INTRODUCTION)
+// ============================================================================
 
 let heroAnimationsInitialized = false;
 
 /**
- * Inicializa las animaciones de la sección Hero
- * - Menú desktop: sale escondido de derecha a izquierda hasta su posición original
- * - Imagen del panel derecho: fade in de 0.4 a 1
- * - Textos del aside: stagger con desplazamiento
+ * Inicializa las animaciones de entrada para la seccion Hero.
+ * 
+ * Secuencia de animacion:
+ * 1. Imagen del panel derecho: fade in desde opacidad 0.4 a 1
+ * 2. Menu desktop: slide desde la derecha hasta su posicion original
+ * 3. Textos del aside: aparecen uno tras otro (stagger) desde la izquierda
+ * 
+ * Tiempos:
+ * - Imagen: 100ms
+ * - Menu: 250ms
+ * - Textos: 400ms, 550ms, 700ms, 850ms, 1000ms, 1150ms
  */
 export function initHeroAnimations() {
   if (heroAnimationsInitialized) return;
@@ -185,28 +232,26 @@ export function initHeroAnimations() {
   
   if (!aside || !figure) return;
   
-  // Elementos del aside para animar en secuencia
+  // Elementos del aside para animar en secuencia (orden de aparicion)
   const asideElements = [
-    aside.querySelector('p.text-gray-secondary'),                 // "MY NAME IS"
-    aside.querySelector('h2'),                                   // "ALEJANDRO"
-    aside.querySelector('p.text-yellow-primary'),                // "AGUILON"
-    aside.querySelector('p.text-gray-secondary\\/70'),           // "BUITRAGO"
-    aside.querySelector('.bg-yellow-primary'),                   // Botón FRONT END DEVELOPER
-    aside.querySelector('footer')                                // Ubicación
+    aside.querySelector('p.text-gray-secondary'),      // "MY NAME IS"
+    aside.querySelector('h2'),                        // "ALEJANDRO"
+    aside.querySelector('p.text-yellow-primary'),     // "AGUILON"
+    aside.querySelector('p.text-gray-secondary\\/70'), // "BUITRAGO"
+    aside.querySelector('.bg-yellow-primary'),        // Boton FRONT END DEVELOPER
+    aside.querySelector('footer')                     // Ubicacion
   ].filter(el => el);
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // ESTADO INICIAL: Elementos ocultos/listos para animar
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ESTADO INICIAL: Todos los elementos ocultos o en posicion de inicio
   
-  // Menú: escondido a la derecha (fuera de pantalla)
+  // Menu: escondido a la derecha (fuera de pantalla)
   if (nav) {
     nav.style.opacity = '0';
-    nav.style.transform = 'translateX(100%)';  // Sale de MUY a la derecha
+    nav.style.transform = 'translateX(100%)';
     nav.style.transition = 'opacity 0.8s ease-out, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Imagen: empieza con opacidad 0.4
+  // Imagen: empieza con opacidad 0.4 (semi-transparente)
   if (figure) {
     figure.style.opacity = '0.4';
     figure.style.transition = 'opacity 1s ease-out';
@@ -219,18 +264,14 @@ export function initHeroAnimations() {
     el.style.transition = 'opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   });
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // DISPARAR ANIMACIONES - MODO LENTO Y SABROSO
-  // ═══════════════════════════════════════════════════════════════════════════
+  // DISPARAR ANIMACIONES EN SECUENCIA
   requestAnimationFrame(() => {
-    // 1. Imagen - fade de 0.4 a 1 (lento)
+    // 1. Imagen - fade in lento
     setTimeout(() => {
-      if (figure) {
-        figure.style.opacity = '1';
-      }
+      if (figure) figure.style.opacity = '1';
     }, 100);
     
-    // 2. Menú - slide de derecha a izquierda hasta su posición original (más lento)
+    // 2. Menu - slide desde la derecha
     setTimeout(() => {
       if (nav) {
         nav.style.opacity = '1';
@@ -238,12 +279,12 @@ export function initHeroAnimations() {
       }
     }, 250);
     
-    // 3. Textos del aside - stagger con más delay entre cada uno
+    // 3. Textos del aside - stagger progresivo
     asideElements.forEach((el, index) => {
       setTimeout(() => {
         el.style.opacity = '1';
         el.style.transform = 'translateX(0)';
-      }, 400 + (index * 150)); // 400ms, 550ms, 700ms, 850ms, 1000ms, 1150ms
+      }, 400 + (index * 150));
     });
   });
   
@@ -251,7 +292,8 @@ export function initHeroAnimations() {
 }
 
 /**
- * Resetea las animaciones de la Hero (útil al cambiar de sección)
+ * Resetea las animaciones de la seccion Hero.
+ * Util cuando se cambia de seccion y se necesita reiniciar el estado.
  */
 export function resetHeroAnimations() {
   heroAnimationsInitialized = false;
@@ -288,22 +330,27 @@ export function resetHeroAnimations() {
   }
 }
 
-// ... (tu código existente de Hero, typewriter, etc.)
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * ANIMACIONES DE ENTRADA - SECCIÓN ABOUT
- * ═══════════════════════════════════════════════════════════════════════════
- */
+// ============================================================================
+// 5. ANIMACIONES DE ENTRADA - SECCION ABOUT
+// ============================================================================
 
 let aboutAnimationsInitialized = false;
 
 /**
- * Inicializa las animaciones de la sección About
- * - Imagen: slide desde izquierda + fade in
- * - Textos: stagger desde derecha + fade in
- * - Botón CV: fade in con rebote suave
- * - Línea amarilla: se dibuja de izquierda a derecha
+ * Inicializa las animaciones de entrada para la seccion About.
+ * Se activa cuando la seccion es visible (IntersectionObserver).
+ * 
+ * Secuencia de animacion:
+ * 1. Imagen: slide desde la izquierda + fade in
+ * 2. Textos: aparecen uno tras otro desde la derecha
+ * 3. Linea amarilla: se dibuja de izquierda a derecha
+ * 4. Boton CV: aparece con un efecto de rebote
+ * 
+ * Tiempos:
+ * - Imagen: 100ms
+ * - Textos: 250ms, 400ms, 550ms, 700ms
+ * - Linea amarilla: 400ms
+ * - Boton CV: 850ms
  */
 export function initAboutAnimations() {
   if (aboutAnimationsInitialized) return;
@@ -320,54 +367,44 @@ export function initAboutAnimations() {
   
   if (!header) return;
   
-  // Elementos a animar en secuencia
+  // Elementos de texto para animar en secuencia
   const textElements = [
     title?.querySelector('p'),                    // "Who is"
     title?.querySelector('h2 span:first-child'),  // "ALEJANDRO"
-    paragraphs?.[0],                              // Primer párrafo
-    paragraphs?.[1]                               // Segundo párrafo
+    paragraphs?.[0],                              // Primer parrafo
+    paragraphs?.[1]                               // Segundo parrafo
   ].filter(el => el);
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // ESTADO INICIAL: Elementos ocultos/listos para animar
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ESTADO INICIAL: Elementos ocultos o en posicion de inicio
   
-  // Imagen: desplazada a la izquierda y oculta
   if (figure) {
     figure.style.opacity = '0';
     figure.style.transform = 'translateX(-60px)';
     figure.style.transition = 'opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Textos: desplazados a la derecha y ocultos
   textElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateX(40px)';
     el.style.transition = 'opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   });
   
-  // Línea amarilla: ancho 0 (se dibujará)
   if (yellowLine) {
     yellowLine.style.width = '0';
     yellowLine.style.transition = 'width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Botón CV: oculto y más abajo
   if (button) {
     button.style.opacity = '0';
     button.style.transform = 'translateY(20px)';
-    button.style.transition = 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'; // Rebote
+    button.style.transition = 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
   }
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // DISPARAR ANIMACIONES CUANDO LA SECCIÓN ES VISIBLE
-  // ═══════════════════════════════════════════════════════════════════════════
-  
+  // Observer para disparar animaciones cuando la seccion es visible
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !aboutAnimationsInitialized) {
         
-        // 1. Imagen - slide desde izquierda
         setTimeout(() => {
           if (figure) {
             figure.style.opacity = '1';
@@ -375,22 +412,17 @@ export function initAboutAnimations() {
           }
         }, 100);
         
-        // 2. Textos - stagger desde derecha
         textElements.forEach((el, index) => {
           setTimeout(() => {
             el.style.opacity = '1';
             el.style.transform = 'translateX(0)';
-          }, 250 + (index * 150)); // 250ms, 400ms, 550ms, 700ms
+          }, 250 + (index * 150));
         });
         
-        // 3. Línea amarilla - se dibuja
         setTimeout(() => {
-          if (yellowLine) {
-            yellowLine.style.width = '100%';
-          }
+          if (yellowLine) yellowLine.style.width = '100%';
         }, 400);
         
-        // 4. Botón CV - fade in con rebote
         setTimeout(() => {
           if (button) {
             button.style.opacity = '1';
@@ -402,13 +434,13 @@ export function initAboutAnimations() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 }); // 30% visible
+  }, { threshold: 0.3 });
   
   observer.observe(aboutSection);
 }
 
 /**
- * Resetea las animaciones de About (útil al cambiar de sección)
+ * Resetea las animaciones de la seccion About.
  */
 export function resetAboutAnimations() {
   aboutAnimationsInitialized = false;
@@ -442,32 +474,34 @@ export function resetAboutAnimations() {
     }
   });
   
-  if (yellowLine) {
-    yellowLine.style.width = '';
-  }
-  
+  if (yellowLine) yellowLine.style.width = '';
   if (button) {
     button.style.opacity = '';
     button.style.transform = '';
   }
 }
 
-// ... (tu código existente de Hero, About, typewriter, etc.)
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * ANIMACIONES DE ENTRADA - SECCIÓN SERVICES
- * ═══════════════════════════════════════════════════════════════════════════
- */
+// ============================================================================
+// 6. ANIMACIONES DE ENTRADA - SECCION SERVICES
+// ============================================================================
 
 let servicesAnimationsInitialized = false;
 
 /**
- * Inicializa las animaciones de la sección Services
- * - Título: slide desde arriba + fade in
- * - Línea decorativa: se dibuja de izquierda a derecha
- * - Descripción: fade in con stagger
- * - Cards: stagger desde abajo + fade in
+ * Inicializa las animaciones de entrada para la seccion Services.
+ * Se activa cuando la seccion es visible (IntersectionObserver).
+ * 
+ * Secuencia de animacion:
+ * 1. Titulo: slide desde arriba + fade in
+ * 2. Linea decorativa: se dibuja de izquierda a derecha
+ * 3. Descripcion: fade in con slide up
+ * 4. Cards: aparecen una tras otra desde abajo
+ * 
+ * Tiempos:
+ * - Titulo: 100ms
+ * - Linea: 250ms
+ * - Descripcion: 400ms
+ * - Cards: 500ms, 620ms, 740ms, 860ms, 980ms, 1100ms
  */
 export function initServicesAnimations() {
   if (servicesAnimationsInitialized) return;
@@ -483,46 +517,35 @@ export function initServicesAnimations() {
   
   if (!header) return;
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // ESTADO INICIAL: Elementos ocultos/listos para animar
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ESTADO INICIAL
   
-  // Título: desplazado hacia arriba y oculto
   if (title) {
     title.style.opacity = '0';
     title.style.transform = 'translateY(-40px)';
     title.style.transition = 'opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Línea decorativa: ancho 0 (se dibujará)
   if (line) {
     line.style.width = '0';
     line.style.transition = 'width 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Descripción: oculta
   if (description) {
     description.style.opacity = '0';
     description.style.transform = 'translateY(20px)';
     description.style.transition = 'opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Cards: desplazadas hacia abajo y ocultas
   cards.forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(50px)';
     card.style.transition = 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   });
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // DISPARAR ANIMACIONES CUANDO LA SECCIÓN ES VISIBLE
-  // ═══════════════════════════════════════════════════════════════════════════
-  
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !servicesAnimationsInitialized) {
         
-        // 1. Título - slide desde arriba
         setTimeout(() => {
           if (title) {
             title.style.opacity = '1';
@@ -530,14 +553,10 @@ export function initServicesAnimations() {
           }
         }, 100);
         
-        // 2. Línea decorativa - se dibuja
         setTimeout(() => {
-          if (line) {
-            line.style.width = '100%';
-          }
+          if (line) line.style.width = '100%';
         }, 250);
         
-        // 3. Descripción - fade in
         setTimeout(() => {
           if (description) {
             description.style.opacity = '1';
@@ -545,25 +564,24 @@ export function initServicesAnimations() {
           }
         }, 400);
         
-        // 4. Cards - stagger desde abajo
         cards.forEach((card, index) => {
           setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-          }, 500 + (index * 120)); // 500ms, 620ms, 740ms, 860ms, 980ms, 1100ms
+          }, 500 + (index * 120));
         });
         
         servicesAnimationsInitialized = true;
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 }); // 20% visible
+  }, { threshold: 0.2 });
   
   observer.observe(servicesSection);
 }
 
 /**
- * Resetea las animaciones de Services
+ * Resetea las animaciones de la seccion Services.
  */
 export function resetServicesAnimations() {
   servicesAnimationsInitialized = false;
@@ -581,38 +599,38 @@ export function resetServicesAnimations() {
     title.style.opacity = '';
     title.style.transform = '';
   }
-  
-  if (line) {
-    line.style.width = '';
-  }
-  
+  if (line) line.style.width = '';
   if (description) {
     description.style.opacity = '';
     description.style.transform = '';
   }
-  
   cards.forEach(card => {
     card.style.opacity = '';
     card.style.transform = '';
   });
 }
 
-// ... (tu código existente de Hero, About, Services, etc.)
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * ANIMACIONES DE ENTRADA - SECCIÓN PROJECTS
- * ═══════════════════════════════════════════════════════════════════════════
- */
+// ============================================================================
+// 7. ANIMACIONES DE ENTRADA - SECCION PROJECTS
+// ============================================================================
 
 let projectsAnimationsInitialized = false;
 
 /**
- * Inicializa las animaciones de la sección Projects
- * - Título: slide desde izquierda + fade in
- * - Línea decorativa: se dibuja de izquierda a derecha
- * - Botones de filtro: stagger desde arriba + fade in
- * - Cards: stagger con flip suave + fade in
+ * Inicializa las animaciones de entrada para la seccion Projects.
+ * Se activa cuando la seccion es visible (IntersectionObserver).
+ * 
+ * Secuencia de animacion:
+ * 1. Titulo: slide desde la izquierda + fade in
+ * 2. Linea decorativa: se dibuja de izquierda a derecha
+ * 3. Botones de filtro: caen uno tras otro desde arriba
+ * 4. Cards: aparecen con efecto de flip suave (escala + fade)
+ * 
+ * Tiempos:
+ * - Titulo: 100ms
+ * - Linea: 250ms
+ * - Botones: 350ms, 410ms, 470ms, 530ms
+ * - Cards: 550ms, 650ms, 750ms, 850ms...
  */
 export function initProjectsAnimations() {
   if (projectsAnimationsInitialized) return;
@@ -628,46 +646,35 @@ export function initProjectsAnimations() {
   
   if (!header) return;
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // ESTADO INICIAL: Elementos ocultos/listos para animar
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ESTADO INICIAL
   
-  // Título: desplazado a la izquierda y oculto
   if (title) {
     title.style.opacity = '0';
     title.style.transform = 'translateX(-50px)';
     title.style.transition = 'opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Línea decorativa: ancho 0 (se dibujará)
   if (line) {
     line.style.width = '0';
     line.style.transition = 'width 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Botones de filtro: desplazados hacia arriba y ocultos
   filterButtons.forEach(btn => {
     btn.style.opacity = '0';
     btn.style.transform = 'translateY(-30px)';
     btn.style.transition = 'opacity 0.4s ease-out, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   });
   
-  // Cards: ocultas con escala 0.8
   cards.forEach(card => {
     card.style.opacity = '0';
     card.style.transform = 'scale(0.85) translateY(30px)';
     card.style.transition = 'opacity 0.5s ease-out, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   });
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // DISPARAR ANIMACIONES CUANDO LA SECCIÓN ES VISIBLE
-  // ═══════════════════════════════════════════════════════════════════════════
-  
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !projectsAnimationsInitialized) {
         
-        // 1. Título - slide desde izquierda
         setTimeout(() => {
           if (title) {
             title.style.opacity = '1';
@@ -675,40 +682,35 @@ export function initProjectsAnimations() {
           }
         }, 100);
         
-        // 2. Línea decorativa - se dibuja
         setTimeout(() => {
-          if (line) {
-            line.style.width = '100%';
-          }
+          if (line) line.style.width = '100%';
         }, 250);
         
-        // 3. Botones de filtro - stagger desde arriba
         filterButtons.forEach((btn, index) => {
           setTimeout(() => {
             btn.style.opacity = '1';
             btn.style.transform = 'translateY(0)';
-          }, 350 + (index * 60)); // 350ms, 410ms, 470ms, 530ms
+          }, 350 + (index * 60));
         });
         
-        // 4. Cards - stagger con flip suave
         cards.forEach((card, index) => {
           setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'scale(1) translateY(0)';
-          }, 550 + (index * 100)); // 550ms, 650ms, 750ms, 850ms
+          }, 550 + (index * 100));
         });
         
         projectsAnimationsInitialized = true;
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 }); // 20% visible
+  }, { threshold: 0.2 });
   
   observer.observe(projectsSection);
 }
 
 /**
- * Resetea las animaciones de Projects
+ * Resetea las animaciones de la seccion Projects.
  */
 export function resetProjectsAnimations() {
   projectsAnimationsInitialized = false;
@@ -726,36 +728,40 @@ export function resetProjectsAnimations() {
     title.style.opacity = '';
     title.style.transform = '';
   }
-  
-  if (line) {
-    line.style.width = '';
-  }
-  
+  if (line) line.style.width = '';
   filterButtons.forEach(btn => {
     btn.style.opacity = '';
     btn.style.transform = '';
   });
-  
   cards.forEach(card => {
     card.style.opacity = '';
     card.style.transform = '';
   });
 }
 
-// ... (tu código existente de Hero, About, Services, Projects, etc.)
-
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * ANIMACIONES DE ENTRADA - SECCIÓN CONTACT
- * ═══════════════════════════════════════════════════════════════════════════
- */
+// ============================================================================
+// 8. ANIMACIONES DE ENTRADA - SECCION CONTACT
+// ============================================================================
 
 let contactAnimationsInitialized = false;
 
 /**
- * Inicializa las animaciones de la sección Contact
- * - Panel de información: slide desde derecha a su posición original
- * - Formulario: stagger desde izquierda + fade in
+ * Inicializa las animaciones de entrada para la seccion Contact.
+ * Se activa cuando la seccion es visible (IntersectionObserver).
+ * 
+ * Secuencia de animacion:
+ * 1. Panel de informacion (derecha): slide desde la derecha
+ * 2. Titulo "Contact Us": slide desde arriba
+ * 3. Descripcion: slide desde la izquierda
+ * 4. Campos del formulario: aparecen uno tras otro desde la izquierda
+ * 5. Boton SEND: aparece con efecto de rebote
+ * 
+ * Tiempos:
+ * - Panel info: 100ms
+ * - Titulo: 200ms
+ * - Descripcion: 300ms
+ * - Campos: 400ms, 500ms, 600ms
+ * - Boton: 750ms
  */
 export function initContactAnimations() {
   if (contactAnimationsInitialized) return;
@@ -772,58 +778,45 @@ export function initContactAnimations() {
   
   if (!form || !aside) return;
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // ESTADO INICIAL: Elementos ocultos/listos para animar
-  // ═══════════════════════════════════════════════════════════════════════════
+  // ESTADO INICIAL
   
-  // Panel de información: desplazado a la derecha y oculto
   aside.style.opacity = '0';
   aside.style.transform = 'translateX(80px)';
   aside.style.transition = 'opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   
-  // Título: desplazado hacia arriba y oculto
   if (title) {
     title.style.opacity = '0';
     title.style.transform = 'translateY(-30px)';
     title.style.transition = 'opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Descripción: oculta
   if (description) {
     description.style.opacity = '0';
     description.style.transform = 'translateX(-30px)';
     description.style.transition = 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   }
   
-  // Fieldsets: desplazados a la izquierda y ocultos
   fieldsets?.forEach(fieldset => {
     fieldset.style.opacity = '0';
     fieldset.style.transform = 'translateX(-40px)';
     fieldset.style.transition = 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   });
   
-  // Botón: oculto y más abajo
   if (button) {
     button.style.opacity = '0';
     button.style.transform = 'translateY(20px)';
     button.style.transition = 'opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
   }
   
-  // ═══════════════════════════════════════════════════════════════════════════
-  // DISPARAR ANIMACIONES CUANDO LA SECCIÓN ES VISIBLE
-  // ═══════════════════════════════════════════════════════════════════════════
-  
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !contactAnimationsInitialized) {
         
-        // 1. Panel de información - slide desde derecha
         setTimeout(() => {
           aside.style.opacity = '1';
           aside.style.transform = 'translateX(0)';
         }, 100);
         
-        // 2. Título - slide desde arriba
         setTimeout(() => {
           if (title) {
             title.style.opacity = '1';
@@ -831,7 +824,6 @@ export function initContactAnimations() {
           }
         }, 200);
         
-        // 3. Descripción - slide desde izquierda
         setTimeout(() => {
           if (description) {
             description.style.opacity = '1';
@@ -839,15 +831,13 @@ export function initContactAnimations() {
           }
         }, 300);
         
-        // 4. Fieldsets - stagger desde izquierda
         fieldsets?.forEach((fieldset, index) => {
           setTimeout(() => {
             fieldset.style.opacity = '1';
             fieldset.style.transform = 'translateX(0)';
-          }, 400 + (index * 100)); // 400ms, 500ms, 600ms
+          }, 400 + (index * 100));
         });
         
-        // 5. Botón - fade in con rebote
         setTimeout(() => {
           if (button) {
             button.style.opacity = '1';
@@ -859,13 +849,13 @@ export function initContactAnimations() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 }); // 20% visible
+  }, { threshold: 0.2 });
   
   observer.observe(contactSection);
 }
 
 /**
- * Resetea las animaciones de Contact
+ * Resetea las animaciones de la seccion Contact.
  */
 export function resetContactAnimations() {
   contactAnimationsInitialized = false;
@@ -884,33 +874,27 @@ export function resetContactAnimations() {
     aside.style.opacity = '';
     aside.style.transform = '';
   }
-  
   if (title) {
     title.style.opacity = '';
     title.style.transform = '';
   }
-  
   if (description) {
     description.style.opacity = '';
     description.style.transform = '';
   }
-  
   fieldsets?.forEach(fieldset => {
     fieldset.style.opacity = '';
     fieldset.style.transform = '';
   });
-  
   if (button) {
     button.style.opacity = '';
     button.style.transform = '';
   }
 }
 
-// ... (todo tu código existente)
-
-// ═══════════════════════════════════════════════════════════════════════════
-// EFECTO SCROLL DEL FOOTER - Aparece/desaparece con el scroll
-// ═══════════════════════════════════════════════════════════════════════════
+// ============================================================================
+// 9. EFECTO SCROLL DEL FOOTER
+// ============================================================================
 
 let footerEffectInitialized = false;
 let lastScrollY = 0;
@@ -918,10 +902,15 @@ let footerVisible = true;
 let ticking = false;
 
 /**
- * Inicializa el efecto de scroll del footer
- * - Scroll hacia abajo: footer se esconde (sube)
- * - Scroll hacia arriba: footer aparece (baja)
- * - Solo se activa cuando la sección Contact está al 90% visible
+ * Inicializa el efecto de scroll para el footer.
+ * El footer se esconde al hacer scroll hacia abajo y aparece al hacer scroll hacia arriba.
+ * Solo se activa cuando el usuario ha visto al menos el 90% de la seccion Contact.
+ * 
+ * Comportamiento:
+ * - Antes del 90% de Contact: footer siempre visible
+ * - Despues del 90% de Contact:
+ *   - Scroll hacia ABAJO: footer se esconde (sube)
+ *   - Scroll hacia ARRIBA: footer aparece (baja)
  */
 export function initFooterScrollEffect() {
   if (footerEffectInitialized) return;
@@ -931,7 +920,6 @@ export function initFooterScrollEffect() {
   
   if (!footer || !contactSection) return;
   
-  // Estado inicial: footer visible
   footer.style.transform = 'translateY(0)';
   footer.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
   footerVisible = true;
@@ -939,21 +927,15 @@ export function initFooterScrollEffect() {
   function handleFooterScroll() {
     const currentScrollY = window.scrollY;
     const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
     
-    // Obtener posición de la sección Contact
     const contactRect = contactSection.getBoundingClientRect();
     const contactTop = contactRect.top + window.scrollY;
     const contactHeight = contactRect.height;
-    
-    // Calcular el 90% de la sección Contact
     const triggerPoint = contactTop + (contactHeight * 0.9);
     
-    // Solo activar el efecto si estamos cerca del final (después del 90% de Contact)
     const isNearBottom = currentScrollY + windowHeight >= triggerPoint;
     
     if (!isNearBottom) {
-      // Antes del 90% de Contact: footer siempre visible
       if (!footerVisible) {
         footer.style.transform = 'translateY(0)';
         footerVisible = true;
@@ -963,15 +945,12 @@ export function initFooterScrollEffect() {
       return;
     }
     
-    // Después del 90% de Contact: aplicar efecto de scroll
     if (currentScrollY > lastScrollY) {
-      // Scroll hacia ABAJO → esconder footer (subir)
       if (footerVisible) {
         footer.style.transform = 'translateY(100%)';
         footerVisible = false;
       }
     } else {
-      // Scroll hacia ARRIBA → mostrar footer (bajar)
       if (!footerVisible) {
         footer.style.transform = 'translateY(0)';
         footerVisible = true;
@@ -990,7 +969,7 @@ export function initFooterScrollEffect() {
   }
   
   window.addEventListener('scroll', scrollListener, { passive: true });
-  handleFooterScroll(); // Ejecutar una vez al inicio
+  handleFooterScroll();
   
   footerEffectInitialized = true;
 }
