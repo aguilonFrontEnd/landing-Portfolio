@@ -1,11 +1,10 @@
 ---
-// src/components/layouts/portfolio_navigation.astro
-import ImagesNavegation from "../assets/Img/Navegacion/Img_perfil.jpg";
+const profilePic = "/Img/Navegacion/Img_perfil.jpg";
 ---
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- MENÚ DE NAVEGACIÓN - XL/2XL: DESKTOP | RESTO: HAMBURGUESA                     -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════
 
 <!-- ===== BOTÓN HAMBURGUESA (MOBILE/TABLET/IPAD - TODO MENOS XL/2XL) ===== -->
 <button 
@@ -38,6 +37,7 @@ import ImagesNavegation from "../assets/Img/Navegacion/Img_perfil.jpg";
       <a href="#services" class="mobile-nav-link text-2xl sm:text-3xl md:text-4xl">SERVICES</a>
       <a href="#projects" class="mobile-nav-link text-2xl sm:text-3xl md:text-4xl">PROJECTS</a>
     </nav>
+    
 
     <a href="#contact" class="mobile-contact-btn text-xl sm:text-2xl md:text-3xl mt-auto mb-6 sm:mb-8 py-4 px-8 bg-yellow-primary text-black-primary font-bold uppercase tracking-wider rounded-lg text-center shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:bg-yellow-secondary transition-colors duration-200">CONTACT</a>
 
@@ -97,7 +97,7 @@ import ImagesNavegation from "../assets/Img/Navegacion/Img_perfil.jpg";
   </menu>
 
   <figure id="nav-profile" class="hidden opacity-0">
-    <img src={ImagesNavegation.src} alt="Alejandro Aguilon" class="w-full h-full object-cover" />
+    <img src={profilePic} alt="Alejandro Aguilon" class="w-full h-full object-cover" />
     <figcaption class="sr-only">Foto de perfil</figcaption>
   </figure>
 
