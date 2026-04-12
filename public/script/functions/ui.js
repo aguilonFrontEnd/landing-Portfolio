@@ -2,17 +2,6 @@
  * ============================================================================
  * UI.JS - FUNCIONES DE INTERFAZ DE USUARIO
  * ============================================================================
- * Proposito: Manipulacion del DOM, eventos y navegacion.
- * 
- * Contiene:
- * - Navegacion desktop (scroll + typewriter)
- * - Navegacion mobile/tablet (menu hamburguesa)
- * - Navegacion suave entre secciones
- * - Detector de seccion activa (neon amarillo)
- * - Ocultar menu en footer
- * - Filtros de proyectos
- * - Inicializacion de animaciones de secciones
- * ============================================================================
  */
 
 import { 
@@ -23,26 +12,16 @@ import {
   initServicesAnimations, 
   animateMobileMenu, 
   initHeroAnimations, 
-  initAboutAnimations 
+  initAboutAnimations,
+  showToast
 } from './animation.js';
 
 // ============================================================================
 // NAVEGACION DESKTOP (XL/2XL)
 // ============================================================================
 
-/**
- * Estado de la navegacion desktop
- * @property {Object|null} typewriter - Instancia del typewriter
- * @property {boolean} isScrolled - Indica si se ha hecho scroll
- */
 let desktopState = { typewriter: null, isScrolled: false };
 
-/**
- * Inicializa la navegacion desktop
- * - Controla el cambio de estilo al hacer scroll
- * - Activa el typewriter cuando se activa el modo scroll
- * - Muestra/oculta nombre y foto de perfil
- */
 export function initDesktopNavigation() {
   const nav = document.getElementById('main-navigation');
   const navName = document.getElementById('nav-name');
@@ -51,13 +30,8 @@ export function initDesktopNavigation() {
   
   if (!nav) return;
   
-  // Crear instancia del typewriter
   desktopState.typewriter = createTypewriter(typewriterText, "ALEJANDRO AGUILON BUITRAGO", 60);
   
-  /**
-   * Maneja el evento scroll
-   * Activa/desactiva la clase nav-scrolled segun la posicion
-   */
   function handleScroll() {
     const hasScrolled = window.scrollY > 10;
     if (hasScrolled === desktopState.isScrolled) return;
@@ -65,18 +39,15 @@ export function initDesktopNavigation() {
     desktopState.isScrolled = hasScrolled;
     
     if (hasScrolled) {
-      // Modo scroll: expandir menu, mostrar nombre y foto, iniciar typewriter
       nav.classList.add('nav-scrolled');
       navName.classList.add('visible');
       navProfile.classList.add('visible');
       desktopState.typewriter.start();
     } else {
-      // Modo top: contraer menu, ocultar nombre y foto, detener typewriter
       nav.classList.remove('nav-scrolled');
       navName.classList.remove('visible');
       navProfile.classList.remove('visible');
       desktopState.typewriter.stop();
-      // Quitar clase active de todos los links
       document.querySelectorAll('#nav-links a').forEach(link => link.classList.remove('nav-active'));
     }
   }
@@ -89,19 +60,8 @@ export function initDesktopNavigation() {
 // NAVEGACION MOBILE/TABLET
 // ============================================================================
 
-/**
- * Estado del menu mobile
- * @property {boolean} isMenuOpen - Indica si el menu esta abierto
- */
 let mobileState = { isMenuOpen: false };
 
-/**
- * Inicializa el menu hamburguesa para mobile/tablet
- * - Controla la apertura/cierre del menu
- * - Maneja la animacion de entrada/salida
- * - Cierra el menu al hacer click en un enlace
- * - Cierra el menu con la tecla ESC
- */
 export function initMobileNavigation() {
   const menuToggle = document.getElementById('menu-toggle');
   const menuClose = document.getElementById('menu-close');
@@ -110,7 +70,6 @@ export function initMobileNavigation() {
   
   if (!menuToggle || !mobileMenu) return;
   
-  /** Abre el menu mobile */
   function openMenu() {
     mobileMenu.setAttribute('aria-hidden', 'false');
     menuToggle.setAttribute('aria-expanded', 'true');
@@ -120,7 +79,6 @@ export function initMobileNavigation() {
     mobileState.isMenuOpen = true;
   }
   
-  /** Cierra el menu mobile */
   function closeMenu() {
     mobileMenu.setAttribute('aria-hidden', 'true');
     menuToggle.setAttribute('aria-expanded', 'false');
@@ -133,12 +91,10 @@ export function initMobileNavigation() {
   menuToggle.addEventListener('click', () => mobileState.isMenuOpen ? closeMenu() : openMenu());
   menuClose?.addEventListener('click', closeMenu);
   
-  // Cerrar menu al hacer click en cualquier enlace
   document.querySelectorAll('.mobile-nav-link, .mobile-contact-btn').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
   
-  // Cerrar menu con tecla ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileState.isMenuOpen) closeMenu();
   });
@@ -152,12 +108,6 @@ export function initMobileNavigation() {
 
 let navigationInitialized = false;
 
-/**
- * Inicializa la navegacion suave entre secciones
- * - Previene el comportamiento por defecto de los enlaces
- * - Hace scroll suave hasta la seccion objetivo
- * - Actualiza la URL sin recargar la pagina
- */
 export function initSmoothNavigation() {
   if (navigationInitialized) return;
   
@@ -186,11 +136,6 @@ export function initSmoothNavigation() {
 
 let activeSectionInitialized = false;
 
-/**
- * Inicializa el detector de seccion activa
- * - Aplica la clase nav-active al link correspondiente a la seccion visible
- * - SOLO funciona cuando el menu esta en modo nav-scrolled
- */
 export function initActiveSectionDetection() {
   if (activeSectionInitialized) return;
   
@@ -200,11 +145,7 @@ export function initActiveSectionDetection() {
   const sections = document.querySelectorAll('[data-target]');
   if (sections.length === 0) return;
   
-  /**
-   * Actualiza la seccion activa basada en la posicion del scroll
-   */
   function updateActiveSection() {
-    // Solo aplicar en modo scroll
     if (!nav.classList.contains('nav-scrolled')) {
       document.querySelectorAll('#nav-links a').forEach(link => link.classList.remove('nav-active'));
       return;
@@ -240,11 +181,6 @@ export function initActiveSectionDetection() {
 
 let footerHideInitialized = false;
 
-/**
- * Inicializa el comportamiento de ocultar menu al llegar al footer
- * - El menu desktop se esconde cuando el footer esta visible
- * - Vuelve a aparecer cuando el footer sale del viewport
- */
 export function initFooterHide() {
   if (footerHideInitialized) return;
   
@@ -256,9 +192,6 @@ export function initFooterHide() {
   
   let isFooterVisible = false;
   
-  /**
-   * Verifica la posicion del footer y oculta/muestra el menu
-   */
   function checkFooterPosition() {
     const footerTop = footer.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
@@ -283,10 +216,6 @@ export function initFooterHide() {
 // FILTROS DE PROYECTOS
 // ============================================================================
 
-/**
- * Filtra los proyectos por categoria
- * @param {string} category - Categoria a filtrar ('all', 'professional', 'landing', 'learning')
- */
 export function filterProjects(category) {
   document.querySelectorAll('.project-card').forEach(card => {
     const cardCategory = card.dataset.category;
@@ -304,9 +233,6 @@ export function filterProjects(category) {
   });
 }
 
-/**
- * Inicializa los event listeners de los botones de filtro
- */
 export function initProjectFilters() {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => filterProjects(btn.dataset.filter));
@@ -314,51 +240,94 @@ export function initProjectFilters() {
 }
 
 // ============================================================================
+// FORMULARIO DE CONTACTO
+// ============================================================================
+
+let contactFormInitialized = false;
+
+export function initContactForm() {
+  if (contactFormInitialized) return;
+  
+  const form = document.querySelector('form[aria-label="Formulario de contacto"]');
+  if (!form) return;
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
+    
+    if (!data.name || !data.email || !data.message) {
+      showToast('Please fill in all fields', 'error');
+      return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+      showToast('Please enter a valid email address', 'error');
+      return;
+    }
+    
+    const button = form.querySelector('button[type="submit"]');
+    const buttonText = button.querySelector('span');
+    const originalText = buttonText.textContent;
+    buttonText.textContent = 'SENDING...';
+    button.disabled = true;
+    
+    try {
+      const response = await fetch('/api/contact.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        showToast('Message sent successfully! Thank you for contacting me.', 'success');
+        form.reset();
+      } else {
+        showToast(result.error || 'Error sending message. Please try again.', 'error');
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      showToast('Connection error. Please try again later.', 'error');
+    } finally {
+      buttonText.textContent = originalText;
+      button.disabled = false;
+    }
+  });
+  
+  contactFormInitialized = true;
+}
+
+// ============================================================================
 // INICIALIZAR ANIMACIONES DE SECCIONES
 // ============================================================================
 
-/**
- * Inicializa las animaciones de todas las secciones
- * - Hero: animaciones de entrada (menu, imagen, textos)
- * - About: animaciones de entrada (imagen, textos, boton CV)
- * - Services: animaciones de entrada (titulo, linea, cards)
- * - Projects: animaciones de entrada (titulo, filtros, cards)
- * - Contact: animaciones de entrada (panel info, formulario)
- * - Footer: efecto de scroll (aparece/desaparece)
- */
 export function initSectionAnimations() {
-  // Seccion Hero (introduction)
   const heroSection = document.getElementById('introduction');
   if (heroSection) {
-    setTimeout(() => {
-      initHeroAnimations();
-    }, 50);
+    setTimeout(() => initHeroAnimations(), 50);
   }
   
-  // Seccion About
   const aboutSection = document.getElementById('about');
-  if (aboutSection) {
-    initAboutAnimations();
-  }
-
-  // Seccion Services 
+  if (aboutSection) initAboutAnimations();
+  
   const servicesSection = document.getElementById('services');
-  if (servicesSection) {
-    initServicesAnimations();
-  }
-
-  // Seccion Projects 
+  if (servicesSection) initServicesAnimations();
+  
   const projectsSection = document.getElementById('projects');
-  if (projectsSection) {
-    initProjectsAnimations();
-  }
-
-  // Seccion Contact 
+  if (projectsSection) initProjectsAnimations();
+  
   const contactSection = document.getElementById('contact');
   if (contactSection) {
     initContactAnimations();
   }
-
-  // Efecto scroll del footer 
+  
   initFooterScrollEffect();
 }

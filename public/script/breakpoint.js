@@ -13,7 +13,8 @@ import {
   initSmoothNavigation,
   initActiveSectionDetection,
   initFooterHide,
-  initSectionAnimations
+  initSectionAnimations,
+  initContactForm
 } from './functions/ui.js';
 
 let currentBreakpoint = null;
@@ -42,7 +43,7 @@ function initSharedNavigation() {
   initSmoothNavigation();
   initActiveSectionDetection();
   initFooterHide();
-  initSectionAnimations();  // ✅ NUEVO: Inicializa las animaciones de la Hero
+  initSectionAnimations();
   sharedNavigationInitialized = true;
 }
 
@@ -52,24 +53,28 @@ const BREAKPOINTS = {
     initMobileNavigation();
     initSharedNavigation();
     startCarousel();
+    initContactForm();
   },
   laptop: () => {
     initProjectFilters();
     initMobileNavigation();
     initSharedNavigation();
     startCarousel();
+    initContactForm();
   },
   desktop: () => {
     initProjectFilters();
     initDesktopNavigation();
     initSharedNavigation();
     startCarousel();
+    initContactForm();
   },
   "2k": () => {
     initProjectFilters();
     initDesktopNavigation();
     initSharedNavigation();
     startCarousel();
+    initContactForm();
   }
 };
 
