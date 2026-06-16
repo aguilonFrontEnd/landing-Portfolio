@@ -95,7 +95,7 @@ The repository is structured to keep projects **organized, scalable and easy to 
 If deployed, the portfolio can be accessed here:
 
 ```
-your-portfolio-link.com
+[your-portfolio-link.com](https://www.yosoyalejo.site/)
 ```
 
 ---
